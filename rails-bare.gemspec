@@ -16,9 +16,12 @@ Gem::Specification.new do |gem|
 
   gem.required_rubygems_version = '>= 1.3.6'
 
-  gem.files         = Dir['README.md', 'lib/**/*', 'test/**/*']
+  gem.files         = Dir['README.md', 'bin/**/*', 'lib/**/*', 'test/**/*']
   gem.test_files    = Dir['test/**/*']
   gem.require_paths = ["lib"]
+
+  gem.bindir        = 'bin'
+  gem.executables   = ['rails-api']
 
   gem.add_runtime_dependency 'actionpack', '>= 3.2.0'
   gem.add_runtime_dependency 'railties', '>= 3.2.0'

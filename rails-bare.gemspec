@@ -21,6 +21,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_runtime_dependency 'actionpack', '>= 3.2.0'
-
-  gem.add_development_dependency 'activesupport', '>= 3.2.0'
+  gem.add_runtime_dependency 'railties', '>= 3.2.0'
+  gem.add_runtime_dependency 'tzinfo', '~> 0.3.31'
 end

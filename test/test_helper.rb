@@ -4,24 +4,23 @@ ENV["RAILS_ENV"] = "test"
 require 'rails'
 require 'rails/test_help'
 require 'action_controller/bare'
+require 'rails/bare_application'
 
-App = Class.new(Rails::Application)
-
-SharedTestRoutes = ActionDispatch::Routing::RouteSet.new
-SharedTestRoutes.draw do
-  match ':controller(/:action)'
-end
-
-module ActionController
-  class TestCase
-    setup do
-      @routes = SharedTestRoutes
-    end
+def app
+  @@app ||= Class.new(Rails::BareApplication).tap do |app|
+    app.config.active_support.deprecation = :stderr
   end
 end
+
+app.routes.append do
+  match ':controller(/:action)'
+end
+app.routes.finalize!
 
 module ActionController
   class Bare
-    include SharedTestRoutes.url_helpers
+    include app.routes.url_helpers
   end
 end
+
+Rails.logger = Logger.new("/dev/null")

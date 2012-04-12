@@ -1,3 +1,3 @@
 require 'rails-bare/version'
-require 'action_controller/bare'
-require 'rails/bare_application'
+require 'rails-bare/action_controller/bare'
+require 'rails-bare/application'

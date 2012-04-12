@@ -1,5 +1,5 @@
 require 'rails/engine'
-require 'rails/monkey_patches/application'
+require 'rails-bare/monkey_patches/application'
 
 module Rails
   class BareApplication < Engine
@@ -44,6 +44,48 @@ module Rails
         middleware.use ::Rack::ConditionalGet
         middleware.use ::Rack::ETag, "no-cache"
       end
+    end
+
+    def load_generators(app=self)
+      super
+      require 'rails/generators/rails/resource/resource_generator'
+      Rails::Generators::ResourceGenerator.class_eval do
+        def add_resource_route
+          return if options[:actions].present?
+          route_config =  regular_class_path.collect{|namespace| "namespace :#{namespace} do " }.join(" ")
+          route_config << "resources :#{file_name.pluralize}"
+          route_config << ", except: :edit"
+          route_config << " end" * regular_class_path.size
+          route route_config
+        end
+      end
+      self
+    end
+
+    private
+
+    def setup_generators!
+      generators = config.generators
+
+      generators.templates.unshift File::expand_path('../templates', __FILE__)
+
+      %w(assets css js session_migration).each do |namespace|
+        generators.hide_namespace namespace
+      end
+
+      generators.rails({
+        :assets => false,
+        :helper => false,
+        :javascripts => false,
+        :javascript_engine => nil,
+        :stylesheets => false,
+        :stylesheet_engine => nil,
+        :template_engine => nil
+      })
+    end
+
+    ActiveSupport.on_load(:before_configuration) do
+      setup_generators!
     end
   end
 end

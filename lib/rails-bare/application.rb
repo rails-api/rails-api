@@ -46,20 +46,22 @@ module Rails
       end
     end
 
-    def load_generators(app=self)
-      super
-      require 'rails/generators/rails/resource/resource_generator'
-      Rails::Generators::ResourceGenerator.class_eval do
-        def add_resource_route
-          return if options[:actions].present?
-          route_config =  regular_class_path.collect{|namespace| "namespace :#{namespace} do " }.join(" ")
-          route_config << "resources :#{file_name.pluralize}"
-          route_config << ", except: :edit"
-          route_config << " end" * regular_class_path.size
-          route route_config
+    if Rails.version <= "3.2.3"
+      def load_generators(app=self)
+        super
+        require 'rails/generators/rails/resource/resource_generator'
+        Rails::Generators::ResourceGenerator.class_eval do
+          def add_resource_route
+            return if options[:actions].present?
+            route_config =  regular_class_path.collect{|namespace| "namespace :#{namespace} do " }.join(" ")
+            route_config << "resources :#{file_name.pluralize}"
+            route_config << ", except: :edit"
+            route_config << " end" * regular_class_path.size
+            route route_config
+          end
         end
+        self
       end
-      self
     end
 
     private
@@ -68,6 +70,9 @@ module Rails
       generators = config.generators
 
       generators.templates.unshift File::expand_path('../templates', __FILE__)
+      if Rails.version > "3.2.3"
+        generators.resource_route = :bare_resource_route
+      end
 
       %w(assets css js session_migration).each do |namespace|
         generators.hide_namespace namespace

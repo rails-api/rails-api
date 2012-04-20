@@ -1,5 +1,5 @@
 require 'generators/generators_test_helper'
-require 'rails-bare/generators/rails/app/app_generator'
+require 'rails-api/generators/rails/app/app_generator'
 
 class AppGeneratorTest < Rails::Generators::TestCase
   tests Rails::Generators::AppGenerator
@@ -12,16 +12,16 @@ class AppGeneratorTest < Rails::Generators::TestCase
     default_files.each { |path| assert_file path }
   end
 
-  def test_bare_modified_files
+  def test_api_modified_files
     run_generator
 
     assert_file "Gemfile" do |content|
-      assert_match(/gem 'rails-bare'/, content)
+      assert_match(/gem 'rails-api'/, content)
       assert_no_match(/gem 'coffee-rails'/, content)
       assert_no_match(/gem 'sass-rails'/, content)
     end
-    assert_file "app/controllers/application_controller.rb", /ActionController::Bare/
-    assert_file "config/application.rb", /Rails::BareApplication/
+    assert_file "app/controllers/application_controller.rb", /ActionController::API/
+    assert_file "config/application.rb", /Rails::ApiApplication/
   end
 
   private

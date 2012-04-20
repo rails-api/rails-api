@@ -25,7 +25,10 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       /add_index :product_lines, :user_id/
 
     # Route
-    assert_file "config/routes.rb", /resources :product_lines, except: :edit$/
+    assert_file "config/routes.rb" do |content|
+      assert_match(/resources :product_lines, except: :edit$/, content)
+      assert_no_match(/resource :product_lines$/, content)
+    end
 
     # Controller
     assert_file "app/controllers/product_lines_controller.rb" do |content|

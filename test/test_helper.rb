@@ -3,10 +3,10 @@ ENV["RAILS_ENV"] = "test"
 
 require 'rails'
 require 'rails/test_help'
-require 'rails-bare'
+require 'rails-api'
 
 def app
-  @@app ||= Class.new(Rails::BareApplication) do
+  @@app ||= Class.new(Rails::ApiApplication) do
     config.active_support.deprecation = :stderr
     config.generators do |c|
       c.orm :active_record, :migration => true,
@@ -27,7 +27,7 @@ end
 app.routes.finalize!
 
 module ActionController
-  class Bare
+  class API
     include app.routes.url_helpers
   end
 end

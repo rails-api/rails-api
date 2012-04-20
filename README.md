@@ -1,12 +1,12 @@
-# Rails::Bare
+# Rails::API
 
-**Rails::Bare** is a subset of a normal Rails application, created for applications that don't require all functionality that a complete Rails application provides. It is a bit more lightweight, and consequently a bit faster than a normal Rails application. The main example for its usage is in API applications only, where you usually don't need the entire Rails middleware stack nor template generation.
+**Rails::API** is a subset of a normal Rails application, created for applications that don't require all functionality that a complete Rails application provides. It is a bit more lightweight, and consequently a bit faster than a normal Rails application. The main example for its usage is in API applications only, where you usually don't need the entire Rails middleware stack nor template generation.
 
 ## Using Rails for API-only Apps
 
-This is a quick walk-through to help you get up and running with **Rails::Bare** to create API-only Apps, covering:
+This is a quick walk-through to help you get up and running with **Rails::API** to create API-only Apps, covering:
 
-* What **Rails::Bare** provides for API-only applications
+* What **Rails::API** provides for API-only applications
 * How to decide which middlewares you will want to include
 * How to decide which modules to use in your controller
 
@@ -70,29 +70,29 @@ If you're building a Rails application that will be an API server first and fore
 
 Install the gem if you haven't already:
 
-    gem install rails-bare
+    gem install rails-api
 
-Then generate a new **Rails::Bare** app:
+Then generate a new **Rails::API** app:
 
-    rails-bare new my_api
+    rails-api new my_api
 
 This will do three main things for you:
 
-* Make the application inherit from *Rails::BareApplication* instead of *Rails::Appplication*. This will configure your application to start with a more limited set of middleware than normal. Specifically, it will not include any middleware primarily useful for browser applications (like cookie support) by default.
-* Make *ApplicationController* inherit from *ActionController::Bare* instead of *ActionController::Base*. As with middleware, this will leave out any *ActionController* modules that provide functionality primarily used by browser applications.
+* Make the application inherit from *Rails::ApiApplication* instead of *Rails::Application*. This will configure your application to start with a more limited set of middleware than normal. Specifically, it will not include any middleware primarily useful for browser applications (like cookie support) by default.
+* Make *ApplicationController* inherit from *ActionController::API* instead of *ActionController::Base*. As with middleware, this will leave out any *ActionController* modules that provide functionality primarily used by browser applications.
 * Configure the generators to skip generating views, helpers and assets when you generate a new resource.
 
 #### For already existing apps
 
-If you want to take an existing app and make it a **Rails::Bare** app, you'll have to do some quick setup manually.
+If you want to take an existing app and make it a **Rails::API** app, you'll have to do some quick setup manually.
 
 Add the gem to your *Gemfile*:
 
-    gem 'rails-bare'
+    gem 'rails-api'
 
 And run `bundle` to install the gem.
 
-In *config/application.rb*, change your *Application* class to inherit from *Rails::BareApplication*:
+In *config/application.rb*, change your *Application* class to inherit from *Rails::ApiApplication*:
 
 ```ruby
 # instead of
@@ -103,7 +103,7 @@ end
 
 # do
 module MyApi
-  class Application < Rails::BareApplication
+  class Application < Rails::ApiApplication
   end
 end
 ```
@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
 end
 
 # do
-class ApplicationController < ActionController::Bare
+class ApplicationController < ActionController::API
 end
 ```
 
@@ -124,7 +124,7 @@ And comment out the `protect_from_forgery` call if you are using it.
 
 ### Choosing Middlewares
 
-A bare application comes with the following middlewares by default.
+An api application comes with the following middlewares by default.
 
 * *Rack::Cache*: Caches responses with public *Cache-Control* headers using HTTP caching semantics.
 * *Rack::Sendfile*: Uses a front-end server's file serving support from your Rails application.
@@ -165,7 +165,7 @@ config.middleware.use Rack::MethodOverride
 
 #### Removing Middlewares
 
-If you don't want to use a middleware that is included by default in the bare middleware set, you can remove it using *config.middleware.delete*:
+If you don't want to use a middleware that is included by default in the api middleware set, you can remove it using *config.middleware.delete*:
 
 ```ruby
 config.middleware.delete ::Rack::Sendfile
@@ -175,7 +175,7 @@ Keep in mind that removing these features may remove support for certain feature
 
 ### Choosing Controller Modules
 
-A bare application (using *ActionController::Bare*) comes with the following controller modules by default:
+An api application (using *ActionController::API*) comes with the following controller modules by default:
 
 * *ActionController::UrlFor*: Makes *url_for* and friends available
 * *ActionController::Redirecting*: Support for *redirect_to*
@@ -189,10 +189,10 @@ A bare application (using *ActionController::Bare*) comes with the following con
 * *ActionController::Instrumentation*: Support for the instrumentation hooks defined by *ActionController* (see [the source](https://github.com/rails/rails/blob/master/actionpack/lib/action_controller/metal/instrumentation.rb) for more).
 * *ActionController::Rescue*: Support for *rescue_from*.
 
-Other plugins may add additional modules. You can get a list of all modules included into *ActionController::Bare* in the rails console:
+Other plugins may add additional modules. You can get a list of all modules included into *ActionController::API* in the rails console:
 
 ```ruby
-ActionController::Bare.ancestors - ActionController::Metal.ancestors
+ActionController::API.ancestors - ActionController::Metal.ancestors
 ```
 
 #### Adding Other Modules

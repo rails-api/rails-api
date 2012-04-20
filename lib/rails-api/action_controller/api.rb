@@ -1,5 +1,5 @@
-require 'action_controller/log_subscriber'
 require 'action_controller'
+require 'action_controller/log_subscriber'
 
 module ActionController
   # API Controller is a lightweight version of <tt>ActionController::Base</tt>,

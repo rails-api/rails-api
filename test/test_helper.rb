@@ -6,7 +6,7 @@ require 'rails/test_help'
 require 'rails-api'
 
 def app
-  @@app ||= Class.new(Rails::ApiApplication) do
+  @@app ||= Class.new(Rails::Application) do
     config.active_support.deprecation = :stderr
     config.generators do |c|
       c.orm :active_record, :migration => true,
@@ -17,6 +17,10 @@ def app
 
       c.integration_tool :test_unit
       c.performance_tool :test_unit
+    end
+
+    def self.name
+      'TestApp'
     end
   end
 end

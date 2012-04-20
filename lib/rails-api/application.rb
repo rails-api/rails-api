@@ -1,10 +1,8 @@
-require 'rails/engine'
-require 'rails-api/monkey_patches/application'
+require 'rails/version'
+require 'rails/application'
 
 module Rails
-  class ApiApplication < Engine
-    include Base
-
+  class Application < Engine
     def default_middleware_stack
       ActionDispatch::MiddlewareStack.new.tap do |middleware|
         if rack_cache = config.action_controller.perform_caching && config.action_dispatch.rack_cache
@@ -46,7 +44,7 @@ module Rails
       end
     end
 
-    if Rails.version <= "3.2.3"
+    if Rails::VERSION::STRING <= "3.2.3"
       def load_generators(app=self)
         super
         require 'rails/generators/rails/resource/resource_generator'
@@ -70,7 +68,7 @@ module Rails
       generators = config.generators
 
       generators.templates.unshift File::expand_path('../templates', __FILE__)
-      if Rails.version > "3.2.3"
+      if Rails::VERSION::STRING > "3.2.3"
         generators.resource_route = :api_resource_route
       end
 

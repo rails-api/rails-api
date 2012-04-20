@@ -6,8 +6,10 @@ Gem::Specification.new do |gem|
   gem.name          = "rails-api"
   gem.version       = Rails::API::VERSION
   gem.platform      = Gem::Platform::RUBY
-  gem.summary       = %q{API Applications}
-  gem.description   = %q{API Applications}
+  gem.summary       = %q{Rails for API only Applications}
+  gem.description   = %q{Rails::API is a subset of a normal Rails application,
+                         created for applications that don't require all
+                         functionality that a complete Rails application provides}
   gem.licenses      = ['MIT']
 
   gem.authors       = ["Santiago Pastorino and Carlos Antonio da Silva"]

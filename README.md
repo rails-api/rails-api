@@ -76,9 +76,8 @@ Then generate a new **Rails::API** app:
 
     rails-api new my_api
 
-This will do three main things for you:
+This will do two main things for you:
 
-* Make the application inherit from *Rails::ApiApplication* instead of *Rails::Application*. This will configure your application to start with a more limited set of middleware than normal. Specifically, it will not include any middleware primarily useful for browser applications (like cookie support) by default.
 * Make *ApplicationController* inherit from *ActionController::API* instead of *ActionController::Base*. As with middleware, this will leave out any *ActionController* modules that provide functionality primarily used by browser applications.
 * Configure the generators to skip generating views, helpers and assets when you generate a new resource.
 
@@ -91,22 +90,6 @@ Add the gem to your *Gemfile*:
     gem 'rails-api'
 
 And run `bundle` to install the gem.
-
-In *config/application.rb*, change your *Application* class to inherit from *Rails::ApiApplication*:
-
-```ruby
-# instead of
-module MyApi
-  class Application < Rails::Application
-  end
-end
-
-# do
-module MyApi
-  class Application < Rails::ApiApplication
-  end
-end
-```
 
 Change *app/controllers/application_controller.rb*:
 

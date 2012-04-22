@@ -18,6 +18,7 @@ class AppGeneratorTest < Rails::Generators::TestCase
     assert_file "Gemfile" do |content|
       assert_match(/gem 'rails-api'/, content)
       assert_no_match(/gem 'coffee-rails'/, content)
+      assert_no_match(/gem 'jquery-rails'/, content)
       assert_no_match(/gem 'sass-rails'/, content)
     end
     assert_file "app/controllers/application_controller.rb", /ActionController::API/

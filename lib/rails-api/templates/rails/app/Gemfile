@@ -9,8 +9,6 @@ gem 'rails-api'
 <%= "gem 'jruby-openssl'\n" if defined?(JRUBY_VERSION) -%>
 <%= "gem 'json'\n" if RUBY_VERSION < "1.9.2" -%>
 
-<%= javascript_gemfile_entry %>
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

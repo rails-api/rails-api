@@ -98,6 +98,7 @@ module ActionController
       def wrap_parameters(*); end
       def helpers_path=(*); end
       def allow_forgery_protection=(*); end
+      def helper_method(*); end
     end
 
     extend Compabitility

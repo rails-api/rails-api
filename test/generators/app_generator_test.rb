@@ -10,6 +10,7 @@ class AppGeneratorTest < Rails::Generators::TestCase
     run_generator
 
     default_files.each { |path| assert_file path }
+    skipped_files.each { |path| assert_no_file path }
   end
 
   def test_api_modified_files
@@ -18,6 +19,7 @@ class AppGeneratorTest < Rails::Generators::TestCase
     assert_file "Gemfile" do |content|
       assert_match(/gem 'rails-api'/, content)
       assert_no_match(/gem 'coffee-rails'/, content)
+      assert_no_match(/gem 'jquery-rails'/, content)
       assert_no_match(/gem 'sass-rails'/, content)
     end
     assert_file "app/controllers/application_controller.rb", /ActionController::API/
@@ -47,10 +49,11 @@ class AppGeneratorTest < Rails::Generators::TestCase
        test/functional
        test/integration
        test/performance
-       test/unit
-       vendor
-       vendor/assets
-       tmp/cache
+       test/unit)
+  end
+
+  def skipped_files
+    %w(vendor/assets
        tmp/cache/assets)
   end
 end

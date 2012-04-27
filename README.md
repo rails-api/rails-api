@@ -107,7 +107,7 @@ And comment out the `protect_from_forgery` call if you are using it.
 
 ### Choosing Middlewares
 
-An api application comes with the following middlewares by default.
+An API application comes with the following middlewares by default.
 
 * *ActionDispatch::DebugExceptions*: Log exceptions.
 * *ActionDispatch::Head*: Dispatch *HEAD* requests as *GET* requests, and return only the status code and headers.
@@ -148,7 +148,7 @@ config.middleware.use Rack::MethodOverride
 
 #### Removing Middlewares
 
-If you don't want to use a middleware that is included by default in the api middleware set, you can remove it using *config.middleware.delete*:
+If you don't want to use a middleware that is included by default in the API middleware set, you can remove it using *config.middleware.delete*:
 
 ```ruby
 config.middleware.delete ::Rack::Sendfile
@@ -158,7 +158,7 @@ Keep in mind that removing these features may remove support for certain feature
 
 ### Choosing Controller Modules
 
-An api application (using *ActionController::API*) comes with the following controller modules by default:
+An API application (using *ActionController::API*) comes with the following controller modules by default:
 
 * *ActionController::UrlFor*: Makes *url_for* and friends available
 * *ActionController::Redirecting*: Support for *redirect_to*

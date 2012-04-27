@@ -109,20 +109,20 @@ And comment out the `protect_from_forgery` call if you are using it.
 
 An api application comes with the following middlewares by default.
 
-* *Rack::Cache*: Caches responses with public *Cache-Control* headers using HTTP caching semantics.
-* *Rack::Sendfile*: Uses a front-end server's file serving support from your Rails application.
-* *Rack::Lock*: If your application is not marked as threadsafe (`config.threadsafe!`), this middleware will add a mutex around your requests.
-* *ActionDispatch::RequestId*: Makes a unique request id available, sending the id to the client via the X-Request-Id header. The unique request id can be used to trace a request end-to-end and would typically end up being part of log files from multiple pieces of the stack.
-* *Rails::Rack::Logger*: Log the request started and flush all loggers after it.
-* *Rack::Runtime*: Adds a header to the response listing the total runtime of the request.
-* *ActionDispatch::ShowExceptions*: Rescue exceptions and re-dispatch them to an exception handling application.
 * *ActionDispatch::DebugExceptions*: Log exceptions.
-* *ActionDispatch::RemoteIp*: Protect against IP spoofing attacks.
-* *ActionDispatch::Reloader*: In development mode, support code reloading.
-* *ActionDispatch::ParamsParser*: Parse XML, YAML and JSON parameters when the request's *Content-Type* is one of those.
 * *ActionDispatch::Head*: Dispatch *HEAD* requests as *GET* requests, and return only the status code and headers.
+* *ActionDispatch::ParamsParser*: Parse XML, YAML and JSON parameters when the request's *Content-Type* is one of those.
+* *ActionDispatch::Reloader*: In development mode, support code reloading.
+* *ActionDispatch::RemoteIp*: Protect against IP spoofing attacks.
+* *ActionDispatch::RequestId*: Makes a unique request id available, sending the id to the client via the X-Request-Id header. The unique request id can be used to trace a request end-to-end and would typically end up being part of log files from multiple pieces of the stack.
+* *ActionDispatch::ShowExceptions*: Rescue exceptions and re-dispatch them to an exception handling application.
+* *Rack::Cache*: Caches responses with public *Cache-Control* headers using HTTP caching semantics.
 * *Rack::ConditionalGet*: Supports the `stale?` feature in Rails controllers.
 * *Rack::ETag*: Automatically set an *ETag* on all string responses. This means that if the same response is returned from a controller for the same URL, the server will return a *304 Not Modified*, even if no additional caching steps are taken. This is primarily a client-side optimization; it reduces bandwidth costs but not server processing time.
+* *Rack::Lock*: If your application is not marked as threadsafe (`config.threadsafe!`), this middleware will add a mutex around your requests.
+* *Rack::Runtime*: Adds a header to the response listing the total runtime of the request.
+* *Rack::Sendfile*: Uses a front-end server's file serving support from your Rails application.
+* *Rails::Rack::Logger*: Log the request started and flush all loggers after it.
 
 Other plugins, including *ActiveRecord*, may add additional middlewares. In general, these middlewares are agnostic to the type of app you are building, and make sense in an API-only Rails application.
 

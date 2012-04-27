@@ -112,8 +112,8 @@ An api application comes with the following middlewares by default.
 * *Rack::Cache*: Caches responses with public *Cache-Control* headers using HTTP caching semantics.
 * *Rack::Sendfile*: Uses a front-end server's file serving support from your Rails application.
 * *Rack::Lock*: If your application is not marked as threadsafe (`config.threadsafe!`), this middleware will add a mutex around your requests.
-* *ActionDispatch::RequestId*
-* *Rails::Rack::Logger*
+* *ActionDispatch::RequestId*: Makes a unique request id available, sending the id to the client via the X-Request-Id header. The unique request id can be used to trace a request end-to-end and would typically end up being part of log files from multiple pieces of the stack.
+* *Rails::Rack::Logger*: Log the request started and flush all loggers after it.
 * *Rack::Runtime*: Adds a header to the response listing the total runtime of the request.
 * *ActionDispatch::ShowExceptions*: Rescue exceptions and re-dispatch them to an exception handling application.
 * *ActionDispatch::DebugExceptions*: Log exceptions.

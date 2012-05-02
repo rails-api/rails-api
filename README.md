@@ -1,5 +1,7 @@
 # Rails::API
 
+[![Build Status](https://secure.travis-ci.org/spastorino/rails-api.png?branch=master)](http://travis-ci.org/spastorino/rails-api)
+
 **Rails::API** is a subset of a normal Rails application, created for applications that don't require all functionality that a complete Rails application provides. It is a bit more lightweight, and consequently a bit faster than a normal Rails application. The main example for its usage is in API applications only, where you usually don't need the entire Rails middleware stack nor template generation.
 
 ## Using Rails for API-only Apps

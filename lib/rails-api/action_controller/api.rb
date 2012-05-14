@@ -99,6 +99,7 @@ module ActionController
       def helpers_path=(*); end
       def allow_forgery_protection=(*); end
       def helper_method(*); end
+      def helper(*); end
     end
 
     extend Compabitility

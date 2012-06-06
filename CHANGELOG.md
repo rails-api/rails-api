@@ -1,4 +1,4 @@
-## master
+## 0.0.2
 
 * Use correct SSL middleware for Rails 3.2.x compatibility. (@philm)
 * Add `helper` to compatibility methods for Rails 3.2.x. (@wintery)

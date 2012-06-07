@@ -1,3 +1,7 @@
+## master
+
+* rails-api needs Rails >= 3.2.2. (@scottnichol)
+
 ## 0.0.2
 
 * Use correct SSL middleware for Rails 3.2.x compatibility. (@philm)

@@ -1,5 +1,6 @@
 ## master
 
+* Return proper format on exceptions. (@spastorino)
 * rails-api needs Rails >= 3.2.2. (@scottnichol)
 
 ## 0.0.2

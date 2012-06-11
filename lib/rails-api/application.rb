@@ -25,6 +25,7 @@ module Rails
 
         middleware.use ::Rack::Lock unless config.allow_concurrency
         middleware.use ::Rack::Runtime
+        middleware.use ::Rack::MethodOverride unless config.api_only
         middleware.use ::ActionDispatch::RequestId
         middleware.use ::Rails::Rack::Logger, config.log_tags # must come after Rack::MethodOverride to properly log overridden methods
         middleware.use ::ActionDispatch::ShowExceptions, config.exceptions_app || Rails::API::PublicExceptions.new(Rails.public_path)
@@ -37,11 +38,24 @@ module Rails
         end
 
         middleware.use ::ActionDispatch::Callbacks
+        middleware.use ::ActionDispatch::Cookies unless config.api_only
+
+        if !config.api_only && config.session_store
+          if config.force_ssl && !config.session_options.key?(:secure)
+            config.session_options[:secure] = true
+          end
+          middleware.use config.session_store, config.session_options
+          middleware.use ::ActionDispatch::Flash
+        end
 
         middleware.use ::ActionDispatch::ParamsParser
         middleware.use ::ActionDispatch::Head
         middleware.use ::Rack::ConditionalGet
         middleware.use ::Rack::ETag, "no-cache"
+
+        if !config.api_only && config.action_dispatch.best_standards_support
+          middleware.use ::ActionDispatch::BestStandardsSupport, config.action_dispatch.best_standards_support
+        end
       end
     end
 
@@ -98,6 +112,7 @@ module Rails
     end
 
     ActiveSupport.on_load(:before_configuration) do
+      config.api_only = true
       setup_generators!
     end
   end

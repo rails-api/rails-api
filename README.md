@@ -107,6 +107,8 @@ end
 
 And comment out the `protect_from_forgery` call if you are using it.
 
+If you want to use the Rails default middleware stack (avoid the reduction that rails-api does), you can just add config.api_only = false to config/application.rb file.
+
 ### Choosing Middlewares
 
 An API application comes with the following middlewares by default.

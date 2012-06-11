@@ -23,6 +23,7 @@ class AppGeneratorTest < Rails::Generators::TestCase
       assert_no_match(/gem 'sass-rails'/, content)
     end
     assert_file "app/controllers/application_controller.rb", /ActionController::API/
+    assert_file "config/application.rb", /# config.api_only = false/
   end
 
   private

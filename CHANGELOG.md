@@ -1,5 +1,6 @@
 ## master
 
+* Add config.api_only, set it to false in case you want to use Rails default middleware stack. (@spastorino)
 * Return proper format on exceptions. (@spastorino)
 * rails-api needs Rails >= 3.2.2. (@scottnichol)
 

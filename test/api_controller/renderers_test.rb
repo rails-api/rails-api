@@ -12,7 +12,7 @@ class Model
 end
 
 class RenderersApiController < ActionController::API
-  use ActionDispatch::ShowExceptions, Rails::API::PublicExceptions.new
+  use ActionDispatch::ShowExceptions, Rails::API::PublicExceptions.new(Rails.public_path)
 
   def one
     render :json => Model.new

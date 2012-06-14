@@ -42,7 +42,7 @@ module Rails
 
         if found || File.exist?(path)
           body = File.read(path)
-          [status, {'Content-Type' => "text/html; charset=#{Response.default_charset}", 'Content-Length' => body.bytesize.to_s}, [body]]
+          [status, {'Content-Type' => "text/html; charset=#{ActionDispatch::Response.default_charset}", 'Content-Length' => body.bytesize.to_s}, [body]]
         else
           [404, { "X-Cascade" => "pass" }, []]
         end

@@ -12,15 +12,15 @@ module Rails
         status       = env["PATH_INFO"][1..-1]
         request      = ActionDispatch::Request.new(env)
         content_type = request.formats.first
-        format       = content_type && "to_#{content_type.to_sym}"
         body         = { :status => status, :error => exception.message }
 
-        render(status, body, format, content_type)
+        render(status, content_type, body)
       end
 
       private
 
-      def render(status, body, format, content_type)
+      def render(status, content_type, body)
+        format = content_type && "to_#{content_type.to_sym}"
         if format && body.respond_to?(format)
           render_format(status, content_type, body.public_send(format))
         else

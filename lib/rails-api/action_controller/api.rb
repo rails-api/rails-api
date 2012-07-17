@@ -95,7 +95,6 @@ module ActionController
       def asset_host=(*); end
       def relative_url_root=(*); end
       def perform_caching=(*); end
-      def wrap_parameters(*); end
       def helpers_path=(*); end
       def allow_forgery_protection=(*); end
       def helper_method(*); end

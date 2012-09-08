@@ -1,8 +1,12 @@
 ## master
 
-* Add config.api_only, set it to false in case you want to use Rails default middleware stack. (@spastorino)
+* Add `config.api_only`, set it to false in case you want to use Rails default
+  middleware stack. (@spastorino)
 * Return proper format on exceptions. (@spastorino)
-* rails-api needs Rails >= 3.2.2. (@scottnichol)
+* Generate a specific `wrap_parameters` initializer, with commented out logic,
+  since it's not enabled by default as the Rails template says.
+* Remove `wrap_parameters` compatibility method, to allow enabling it if required.
+* Require Rails >= 3.2.6.
 
 ## 0.0.2
 

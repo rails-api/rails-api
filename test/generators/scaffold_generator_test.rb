@@ -26,7 +26,11 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
     # Route
     assert_file "config/routes.rb" do |content|
-      assert_match(/resources :product_lines, except: :edit$/, content)
+      if RUBY_VERSION < "1.9"
+        assert_match(/resources :product_lines, :except => :edit$/, content)
+      else
+        assert_match(/resources :product_lines, except: :edit$/, content)
+      end
       assert_no_match(/resource :product_lines$/, content)
     end
 
@@ -67,8 +71,13 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
     assert_file "test/functional/product_lines_controller_test.rb" do |test|
       assert_match(/class ProductLinesControllerTest < ActionController::TestCase/, test)
-      assert_match(/post :create, product_line: \{ title: @product_line.title \}/, test)
-      assert_match(/put :update, id: @product_line, product_line: \{ title: @product_line.title \}/, test)
+      if RUBY_VERSION < "1.9"
+        assert_match(/post :create, :product_line => \{ :title => @product_line.title \}/, test)
+        assert_match(/put :update, :id => @product_line, :product_line => \{ :title => @product_line.title \}/, test)
+      else
+        assert_match(/post :create, product_line: \{ title: @product_line.title \}/, test)
+        assert_match(/put :update, id: @product_line, product_line: \{ title: @product_line.title \}/, test)
+      end
       assert_no_match(/assert_redirected_to/, test)
     end
 

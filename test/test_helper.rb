@@ -6,23 +6,27 @@ require 'rails/test_help'
 require 'rails-api'
 
 def app
-  @@app ||= Class.new(Rails::Application) do
-    config.active_support.deprecation = :stderr
-    config.generators do |c|
-      c.orm :active_record, :migration => true,
-                            :timestamps => true
+  unless defined?(@@app)
+    @@app = Class.new(Rails::Application)
+    @@app.class_eval do
+      config.active_support.deprecation = :stderr
+      config.generators do |c|
+        c.orm :active_record, :migration => true,
+                              :timestamps => true
 
-      c.test_framework :test_unit, :fixture => true,
-                                   :fixture_replacement => nil
+        c.test_framework :test_unit, :fixture => true,
+                                     :fixture_replacement => nil
 
-      c.integration_tool :test_unit
-      c.performance_tool :test_unit
-    end
+        c.integration_tool :test_unit
+        c.performance_tool :test_unit
+      end
 
-    def self.name
-      'TestApp'
+      def self.name
+        'TestApp'
+      end
     end
   end
+  @@app
 end
 
 app.routes.append do

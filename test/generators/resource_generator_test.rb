@@ -15,7 +15,11 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     run_generator
 
     assert_file "config/routes.rb" do |route|
-      assert_match(/resources :accounts, except: :edit$/, route)
+      if RUBY_VERSION < "1.9"
+        assert_match(/resources :accounts, :except => :edit$/, route)
+      else
+        assert_match(/resources :accounts, except: :edit$/, route)
+      end
       assert_no_match(/resources :accounts$/, route)
     end
   end

@@ -22,7 +22,7 @@ module Rails
       def render(status, content_type, body)
         format = content_type && "to_#{content_type.to_sym}"
         if format && body.respond_to?(format)
-          render_format(status, content_type, body.public_send(format))
+          render_format(status, content_type, body.send(format))
         else
           render_html(status)
         end

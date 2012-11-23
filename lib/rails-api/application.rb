@@ -14,15 +14,6 @@ module Rails
 
     private
 
-    def ssl_module
-      if defined? ::ActionDispatch::SSL
-        ::ActionDispatch::SSL
-      else
-        require 'rack/ssl'
-        ::Rack::SSL
-      end
-    end
-
     def setup_generators!
       generators = config.generators
 
@@ -127,7 +118,8 @@ module Rails
         end
 
         if config.force_ssl
-          middleware.use ssl_module, config.ssl_options
+          require "rack/ssl"
+          middleware.use ::Rack::SSL, config.ssl_options
         end
 
         if config.action_dispatch.x_sendfile_header.present?
@@ -173,6 +165,5 @@ module Rails
         end
       end
     end
-
   end
 end

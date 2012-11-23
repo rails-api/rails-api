@@ -5,7 +5,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def index
     @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
 
-    render json: <%= "@#{plural_table_name}" %>
+    render <%= key_value :json, "@#{plural_table_name}" %>
   end
 
   # GET <%= route_url %>/1
@@ -13,7 +13,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def show
     @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
 
-    render json: <%= "@#{singular_table_name}" %>
+    render <%= key_value :json, "@#{singular_table_name}" %>
   end
 
   # GET <%= route_url %>/new
@@ -21,7 +21,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def new
     @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
 
-    render json: <%= "@#{singular_table_name}" %>
+    render <%= key_value :json, "@#{singular_table_name}" %>
   end
 
   # POST <%= route_url %>
@@ -30,9 +30,9 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "params[:#{singular_table_name}]") %>
 
     if @<%= orm_instance.save %>
-      render json: <%= "@#{singular_table_name}" %>, status: :created, location: <%= "@#{singular_table_name}" %>
+      render <%= key_value :json, "@#{singular_table_name}" %>, <%= key_value :status, ':created' %>, <%= key_value :location, "@#{singular_table_name}" %>
     else
-      render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
+      render <%= key_value :json, "@#{orm_instance.errors}" %>, <%= key_value :status, ':unprocessable_entity' %>
     end
   end
 
@@ -44,7 +44,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     if @<%= orm_instance.update_attributes("params[:#{singular_table_name}]") %>
       head :no_content
     else
-      render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity
+      render <%= key_value :json, "@#{orm_instance.errors}" %>, <%= key_value :status, ':unprocessable_entity' %>
     end
   end
 

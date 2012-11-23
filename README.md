@@ -212,3 +212,7 @@ The best place to add a module is in your *ApplicationController*. You can also 
 ## License
 
 MIT License.
+
+## Mailing List
+
+https://groups.google.com/forum/?fromgroups#!forum/rails-api-core

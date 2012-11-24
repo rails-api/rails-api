@@ -2,7 +2,7 @@ require 'generators/generators_test_helper'
 require 'rails-api/generators/rails/app/app_generator'
 
 class AppGeneratorTest < Rails::Generators::TestCase
-  tests Rails::Generators::AppGenerator
+  include GeneratorsTestHelper
 
   arguments [destination_root]
 
@@ -28,7 +28,7 @@ class AppGeneratorTest < Rails::Generators::TestCase
   private
 
   def default_files
-    %w(.gitignore
+    %W(.gitignore
        Gemfile
        Rakefile
        config.ru
@@ -46,10 +46,10 @@ class AppGeneratorTest < Rails::Generators::TestCase
        log
        script/rails
        test/fixtures
-       test/functional
+       test/#{generated_test_funcional_dir}
        test/integration
        test/performance
-       test/unit)
+       test/#{generated_test_unit_dir})
   end
 
   def skipped_files

@@ -2,14 +2,10 @@ require 'generators/generators_test_helper'
 require 'rails/generators/rails/resource/resource_generator'
 
 class ResourceGeneratorTest < Rails::Generators::TestCase
-  tests Rails::Generators::ResourceGenerator
+  include GeneratorsTestHelper
 
   arguments %w(account)
-
-  def setup
-    super
-    copy_routes
-  end
+  setup :copy_routes
 
   def test_resource_routes_are_added
     run_generator

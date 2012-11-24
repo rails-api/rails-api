@@ -2,27 +2,30 @@ require 'generators/generators_test_helper'
 require 'rails/generators/rails/scaffold/scaffold_generator'
 
 class ScaffoldGeneratorTest < Rails::Generators::TestCase
-  tests Rails::Generators::ScaffoldGenerator
+  include GeneratorsTestHelper
 
   arguments %w(product_line title:string product:belongs_to user:references)
-
-  def setup
-    super
-    copy_routes
-  end
+  setup :copy_routes
 
   def test_scaffold_on_invoke
     run_generator
 
     # Model
     assert_file "app/models/product_line.rb", /class ProductLine < ActiveRecord::Base/
-    assert_file "test/unit/product_line_test.rb", /class ProductLineTest < ActiveSupport::TestCase/
+    assert_file "test/#{generated_test_unit_dir}/product_line_test.rb", /class ProductLineTest < ActiveSupport::TestCase/
     assert_file "test/fixtures/product_lines.yml"
-    assert_migration "db/migrate/create_product_lines.rb",
-      /belongs_to :product/,
-      /add_index :product_lines, :product_id/,
-      /references :user/,
-      /add_index :product_lines, :user_id/
+
+    if rails4?
+      assert_migration "db/migrate/create_product_lines.rb",
+        /belongs_to :product, index: true/,
+        /references :user, index: true/
+    else
+      assert_migration "db/migrate/create_product_lines.rb",
+        /belongs_to :product/,
+        /add_index :product_lines, :product_id/,
+        /references :user/,
+        /add_index :product_lines, :user_id/
+    end
 
     # Route
     assert_file "config/routes.rb" do |content|
@@ -65,7 +68,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       end
     end
 
-    assert_file "test/functional/product_lines_controller_test.rb" do |test|
+    assert_file "test/#{generated_test_funcional_dir}/product_lines_controller_test.rb" do |test|
       assert_match(/class ProductLinesControllerTest < ActionController::TestCase/, test)
       assert_match(/post :create, product_line: \{ title: @product_line.title \}/, test)
       assert_match(/put :update, id: @product_line, product_line: \{ title: @product_line.title \}/, test)
@@ -80,7 +83,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
     # Helpers
     assert_no_file "app/helpers/product_lines_helper.rb"
-    assert_no_file "test/unit/helpers/product_lines_helper_test.rb"
+    assert_no_file "test/#{generated_test_unit_dir}/helpers/product_lines_helper_test.rb"
 
     # Assets
     assert_no_file "app/assets/stylesheets/scaffold.css"

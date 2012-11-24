@@ -5,6 +5,10 @@ require 'rails'
 require 'rails/test_help'
 require 'rails-api'
 
+def rails4?
+  Rails.version.start_with? '4'
+end
+
 def app
   @@app ||= Class.new(Rails::Application) do
     config.active_support.deprecation = :stderr
@@ -19,6 +23,11 @@ def app
       c.performance_tool :test_unit
     end
 
+    if rails4?
+      config.eager_load = false
+      config.secret_key_base = 'abc123'
+    end
+
     def self.name
       'TestApp'
     end
@@ -26,7 +35,7 @@ def app
 end
 
 app.routes.append do
-  match ':controller(/:action)'
+  get ':controller(/:action)'
 end
 app.routes.finalize!
 

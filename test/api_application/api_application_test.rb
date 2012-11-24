@@ -20,7 +20,16 @@ class ApiApplicationTest < ActiveSupport::TestCase
   end
 
   def test_api_middleware_stack
-    assert_equal [
+    expected_middleware_stack =
+      rails4? ? expected_middleware_stack_rails4 : expected_middleware_stack_rails3
+
+    assert_equal expected_middleware_stack, app.middleware.map(&:klass).map(&:name)
+  end
+
+  private
+
+  def expected_middleware_stack_rails3
+    [
       "ActionDispatch::Static",
       "Rack::Lock",
       "ActiveSupport::Cache::Strategy::LocalCache",
@@ -36,6 +45,31 @@ class ApiApplicationTest < ActiveSupport::TestCase
       "ActionDispatch::Head",
       "Rack::ConditionalGet",
       "Rack::ETag"
-    ], app.middleware.map(&:klass).map(&:name)
+    ]
+  end
+
+  def expected_middleware_stack_rails4
+    [
+      "ActionDispatch::Static",
+      "Rack::Lock",
+      "ActiveSupport::Cache::Strategy::LocalCache",
+      "Rack::Runtime",
+      "Rack::MethodOverride",
+      "ActionDispatch::RequestId",
+      "Rails::Rack::Logger",
+      "ActionDispatch::ShowExceptions",
+      "ActionDispatch::DebugExceptions",
+      "ActionDispatch::RemoteIp",
+      "ActionDispatch::Reloader",
+      "ActionDispatch::Callbacks",
+      "ActionDispatch::Cookies",
+      "ActionDispatch::Session::CookieStore",
+      "ActionDispatch::Flash",
+      "ActionDispatch::ParamsParser",
+      "Rack::Head",
+      "Rack::ConditionalGet",
+      "Rack::ETag",
+      "ActionDispatch::BestStandardsSupport"
+    ]
   end
 end

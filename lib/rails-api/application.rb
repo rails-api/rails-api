@@ -20,15 +20,10 @@ module Rails
       generators.templates.unshift File::expand_path('../templates', __FILE__)
       generators.resource_route = :api_resource_route
 
-      %w(assets css js session_migration).each do |namespace|
-        generators.hide_namespace namespace
-      end
+      generators.hide_namespace "css"
 
       generators.rails({
-        :assets => false,
         :helper => false,
-        :javascripts => false,
-        :javascript_engine => nil,
         :stylesheets => false,
         :stylesheet_engine => nil,
         :template_engine => nil

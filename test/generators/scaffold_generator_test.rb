@@ -87,7 +87,6 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
     # Assets
     assert_no_file "app/assets/stylesheets/scaffold.css"
-    assert_no_file "app/assets/javascripts/product_lines.js"
     assert_no_file "app/assets/stylesheets/product_lines.css"
   end
 end

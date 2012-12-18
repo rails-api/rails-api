@@ -208,6 +208,7 @@ The best place to add a module is in your *ApplicationController*. You can also 
 
 * Santiago Pastorino (https://github.com/spastorino)
 * Carlos Antonio da Silva (https://github.com/carlosantoniodasilva)
+* Steve Klabnik (https://github.com/steveklabnik)
 
 ## License
 

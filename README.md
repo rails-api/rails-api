@@ -70,6 +70,8 @@ If you're building a Rails application that will be an API server first and fore
 
 #### For new apps
 
+NOTE: rails-api only supports Ruby 1.9.3 and above.
+
 Install the gem if you haven't already:
 
     gem install rails-api

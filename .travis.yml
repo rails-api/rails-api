@@ -2,7 +2,6 @@ language: ruby
 before_install:
   - gem install bundler
 rvm:
-  - 1.9.2
   - 1.9.3
   - ruby-head
   - jruby-19mode
@@ -12,8 +11,3 @@ gemfile:
   - Gemfile.edge
 notifications:
   email: false
-matrix:
-  exclude:
-    # Edge Rails is only compatible with 1.9.3+
-    - gemfile: Gemfile.edge
-      rvm: 1.9.2

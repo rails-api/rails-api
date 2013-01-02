@@ -68,9 +68,9 @@ Of course, the Rails boot process also glues together all registered components.
 
 If you're building a Rails application that will be an API server first and foremost, you can start with a more limited subset of Rails and add in features as needed.
 
-#### For new apps
+**NOTE**: rails-api only supports Ruby 1.9.3 and above.
 
-NOTE: rails-api only supports Ruby 1.9.3 and above.
+#### For new apps
 
 Install the gem if you haven't already:
 

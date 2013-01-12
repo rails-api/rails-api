@@ -51,7 +51,7 @@ class ConditionalGetApiTest < ActionController::TestCase
     @request.if_modified_since = @last_modified
     get :one
     assert_equal 304, @response.status.to_i
-    assert_blank @response.body
+    assert @response.body.blank?
     assert_equal @last_modified, @response.headers['Last-Modified']
   end
 end

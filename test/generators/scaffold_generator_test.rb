@@ -58,7 +58,11 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
       assert_instance_method :update, content do |m|
         assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
-        assert_match(/@product_line\.update_attributes\(params\[:product_line\]\)/, m)
+        if rails4?
+          assert_match(/@product_line\.update\(params\[:product_line\]\)/, m)
+        else
+          assert_match(/@product_line\.update_attributes\(params\[:product_line\]\)/, m)
+        end
         assert_match(/@product_line\.errors/, m)
       end
 

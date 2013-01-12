@@ -35,20 +35,20 @@ class AppGeneratorTest < Rails::Generators::TestCase
        app/controllers
        app/mailers
        app/models
+       bin/bundle
+       bin/rails
+       bin/rake
        config/environments
        config/initializers
        config/locales
        db
-       doc
        lib
        lib/tasks
        lib/assets
        log
-       script/rails
        test/fixtures
        test/#{generated_test_funcional_dir}
        test/integration
-       test/performance
        test/#{generated_test_unit_dir})
   end
 

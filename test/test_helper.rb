@@ -7,7 +7,7 @@ require 'rails/test_help'
 require 'rails-api'
 
 def rails4?
-  Rails.version.start_with? '4'
+  Rails::API.rails4?
 end
 
 def app

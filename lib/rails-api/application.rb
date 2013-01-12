@@ -5,7 +5,7 @@ require 'rails-api/public_exceptions'
 module Rails
   class Application < Engine
     def default_middleware_stack
-      if Rails.version =~ /4\..\../
+      if Rails::API.rails4?
         rails_four_stack
       else
         rails_three_stack

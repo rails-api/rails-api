@@ -84,7 +84,7 @@ module ActionController
   class API < Metal
     abstract!
 
-    module Compabitility
+    module Compatibility
       def cache_store; end
       def cache_store=(*); end
       def assets_dir=(*); end
@@ -101,7 +101,7 @@ module ActionController
       def helper(*); end
     end
 
-    extend Compabitility
+    extend Compatibility
 
     # Shortcut helper that returns all the ActionController::API modules except the ones passed in the argument:
     #

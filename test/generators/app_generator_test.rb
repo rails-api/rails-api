@@ -28,28 +28,37 @@ class AppGeneratorTest < Rails::Generators::TestCase
   private
 
   def default_files
-    %W(.gitignore
-       Gemfile
-       Rakefile
-       config.ru
-       app/controllers
-       app/mailers
-       app/models
-       bin/bundle
-       bin/rails
-       bin/rake
-       config/environments
-       config/initializers
-       config/locales
-       db
-       lib
-       lib/tasks
-       lib/assets
-       log
-       test/fixtures
-       test/#{generated_test_funcional_dir}
-       test/integration
-       test/#{generated_test_unit_dir})
+    files = %W(
+      .gitignore
+      Gemfile
+      Rakefile
+      config.ru
+      app/controllers
+      app/mailers
+      app/models
+      config/environments
+      config/initializers
+      config/locales
+      db
+      lib
+      lib/tasks
+      lib/assets
+      log
+      test/fixtures
+      test/#{generated_test_funcional_dir}
+      test/integration
+      test/#{generated_test_unit_dir}
+    )
+    files.concat rails4? ? default_files_rails4 : default_files_rails3
+    files
+  end
+
+  def default_files_rails3
+    %w(script/rails)
+  end
+
+  def default_files_rails4
+    %w(bin/bundle bin/rails bin/rake)
   end
 
   def skipped_files

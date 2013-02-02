@@ -69,7 +69,6 @@ class ApiApplicationTest < ActiveSupport::TestCase
       "Rack::Head",
       "Rack::ConditionalGet",
       "Rack::ETag",
-      "ActionDispatch::BestStandardsSupport"
     ]
   end
 end

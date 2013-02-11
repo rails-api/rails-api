@@ -54,7 +54,6 @@ While you could obviously build these up in terms of existing Rack middlewares, 
 * Resourceful Routing: If you're building a RESTful JSON API, you want to be using the Rails router. Clean and conventional mapping from HTTP to controllers means not having to spend time thinking about how to model your API in terms of HTTP.
 * URL Generation: The flip side of routing is URL generation. A good API based on HTTP includes URLs (see [the GitHub gist API](http://developer.github.com/v3/gists/) for an example).
 * Header and Redirection Responses: `head :no_content` and `redirect_to user_url(current_user)` come in handy. Sure, you could manually add the response headers, but why?
-* Caching: Rails provides page, action and fragment caching. Fragment caching is especially helpful when building up a nested JSON object.
 * Basic, Digest and Token Authentication: Rails comes with out-of-the-box support for three kinds of HTTP authentication.
 * Instrumentation: Rails 3.0 added an instrumentation API that will trigger registered handlers for a variety of events, such as action processing, sending a file or data, redirection, and database queries. The payload of each event comes with relevant information (for the action processing event, the payload includes the controller, action, params, request format, request method and the request's full path).
 * Generators: This may be passé for advanced Rails users, but it can be nice to generate a resource and get your model, controller, test stubs, and routes created for you in a single command.
@@ -110,6 +109,10 @@ end
 And comment out the `protect_from_forgery` call if you are using it.
 
 If you want to use the Rails default middleware stack (avoid the reduction that rails-api does), you can just add config.api_only = false to config/application.rb file.
+
+### Serialization
+
+We suggest using [ActiveModel::Serializers][ams] to deserialize your ActiveModel/ActiveRecord objects into the desired response format (e.g. JSON).
 
 ### Choosing Middlewares
 
@@ -219,3 +222,5 @@ MIT License.
 ## Mailing List
 
 https://groups.google.com/forum/?fromgroups#!forum/rails-api-core
+
+[ams]: https://github.com/rails-api/active_model_serializers

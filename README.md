@@ -147,7 +147,7 @@ Rails ships with a number of other middlewares that you might want to use in an 
 * *ActionDispatch::Cookies*: Supports the *cookie* method in *ActionController*, including support for signed and encrypted cookies.
 * *ActionDispatch::Flash*: Supports the *flash* mechanism in *ActionController*.
 * *ActionDispatch::BestStandards*: Tells Internet Explorer to use the most standards-compliant available renderer. In production mode, if ChromeFrame is available, use ChromeFrame.
-* Session Management: If a *config.session_store* is supplied, this middleware makes the session available as the *session* method in *ActionController*.
+* Session Management: If a *config.session_store* is supplied and *config.api_only = false*, this middleware makes the session available as the *session* method in *ActionController*.
 
 Any of these middlewares can be added via:
 

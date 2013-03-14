@@ -11,7 +11,7 @@ class ResourceGeneratorTest < Rails::Generators::TestCase
     run_generator
 
     assert_file "config/routes.rb" do |route|
-      assert_match(/resources :accounts, except: :edit$/, route)
+      assert_match(/resources :accounts, except: \[:new, :edit\]$/, route)
       assert_no_match(/resources :accounts$/, route)
     end
   end

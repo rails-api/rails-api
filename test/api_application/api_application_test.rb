@@ -2,8 +2,6 @@ require 'test_helper'
 require 'action_controller/railtie'
 require 'rack/test'
 
-app.initialize!
-
 class OmgController < ActionController::API
   def index
     render :text => "OMG"
@@ -12,6 +10,8 @@ end
 
 class ApiApplicationTest < ActiveSupport::TestCase
   include ::Rack::Test::Methods
+
+  app.initialize!
 
   def test_boot_api_app
     get "/omg"

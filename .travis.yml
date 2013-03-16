@@ -1,13 +1,14 @@
 language: ruby
-before_install:
-  - gem install bundler
 rvm:
   - 1.9.3
-  - ruby-head
+  - 2.0.0
   - jruby-19mode
   - rbx-19mode
 gemfile:
   - Gemfile
   - Gemfile.edge
+matrix:
+  allow_failures:
+    - gemfile: Gemfile.edge
 notifications:
   email: false

@@ -72,7 +72,6 @@ module Rails
 
         middleware.use ::Rack::Lock unless config.cache_classes
         middleware.use ::Rack::Runtime
-        middleware.use ::Rack::MethodOverride
         middleware.use ::ActionDispatch::RequestId
         middleware.use ::Rails::Rack::Logger, config.log_tags # must come after Rack::MethodOverride to properly log overridden methods
         middleware.use ::ActionDispatch::ShowExceptions, config.exceptions_app || ActionDispatch::PublicExceptions.new(Rails.public_path)
@@ -84,15 +83,6 @@ module Rails
         end
 
         middleware.use ::ActionDispatch::Callbacks
-        middleware.use ::ActionDispatch::Cookies
-
-        if config.session_store
-          if config.force_ssl && !config.session_options.key?(:secure)
-            config.session_options[:secure] = true
-          end
-          middleware.use config.session_store, config.session_options
-          middleware.use ::ActionDispatch::Flash
-        end
 
         middleware.use ::ActionDispatch::ParamsParser
         middleware.use ::Rack::Head

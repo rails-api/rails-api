@@ -46,10 +46,6 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
         assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
       end
 
-      assert_instance_method :new, content do |m|
-        assert_match(/@product_line = ProductLine\.new/, m)
-      end
-
       assert_instance_method :create, content do |m|
         assert_match(/@product_line = ProductLine\.new\(params\[:product_line\]\)/, m)
         assert_match(/@product_line\.save/, m)

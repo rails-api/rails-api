@@ -12,11 +12,6 @@ class <%= controller_class_name %>ControllerTest < ActionController::TestCase
     assert_not_nil assigns(:<%= table_name %>)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
   test "should create <%= singular_table_name %>" do
     assert_difference('<%= class_name %>.count') do
       post :create, <%= "#{singular_table_name}: { #{attributes_hash} }" %>

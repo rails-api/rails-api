@@ -16,14 +16,6 @@ class <%= controller_class_name %>Controller < ApplicationController
     render json: <%= "@#{singular_table_name}" %>
   end
 
-  # GET <%= route_url %>/new
-  # GET <%= route_url %>/new.json
-  def new
-    @<%= singular_table_name %> = <%= orm_class.build(class_name) %>
-
-    render json: <%= "@#{singular_table_name}" %>
-  end
-
   # POST <%= route_url %>
   # POST <%= route_url %>.json
   def create

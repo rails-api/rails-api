@@ -24,6 +24,7 @@ module Rails
 
       generators.rails({
         :helper => false,
+        :assets => false,
         :stylesheets => false,
         :stylesheet_engine => nil,
         :template_engine => nil

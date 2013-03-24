@@ -5,7 +5,7 @@ require 'rails-api/application'
 module Rails
   module API
     def self.rails4?
-      Rails.version.start_with? '4'
+      Rails::VERSION::MAJOR == 4
     end
   end
 end

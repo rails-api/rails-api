@@ -1,4 +1,14 @@
-## master
+## unreleased
+
+## 0.1.0
+
+* Remove Ruby 1.9.2 support. (@steveklabnik)
+* Ensure we require dependencies without security issues (@carlosantonio)
+* Fix BestStandardsSupport, no longer in Rails 4 (@et)
+* Remove old info about Rails from README (@garysweaver)
+* Don't generate assets by default (@kjg)
+
+## 0.0.3
 
 * Add `config.api_only`, set it to false in case you want to use Rails default
   middleware stack. (@spastorino)

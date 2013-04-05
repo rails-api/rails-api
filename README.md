@@ -97,6 +97,18 @@ This can also be achieved with flags when creating a new **Rails::API** app:
 
     rails-api new my_api --skip-test-unit --skip-sprockets
 
+Note: There are references to ActionMailer and ActiveRecord in the various
+  config/environment files. If you decide to exclude any of these from your project
+  its best to comment these out in case you need them later.
+
+    # comment out this in config/environments/development.rb
+    config.active_record.migration_error = :page_load
+    config.action_mailer.raise_delivery_errors = false
+
+    # comment out this in config/environments/test.rb
+    config.action_mailer.delivery_method = :test
+
+
 #### For already existing apps
 
 If you want to take an existing app and make it a **Rails::API** app, you'll have to do some quick setup manually.

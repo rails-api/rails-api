@@ -84,6 +84,19 @@ This will do two main things for you:
 * Make *ApplicationController* inherit from *ActionController::API* instead of *ActionController::Base*. As with middleware, this will leave out any *ActionController* modules that provide functionality primarily used by browser applications.
 * Configure the generators to skip generating views, helpers and assets when you generate a new resource.
 
+Rails includes all of the sub-frameworks (ActiveRecord, ActionMailer, etc) by default. Some API projects won't need them all, so at the top of config/application.rb, you can replace `require 'rails/all'` with specific sub-frameworks:
+
+    # config/application.rb
+    require "active_record/railtie"
+    require "action_controller/railtie"
+    # require "action_mailer/railtie"
+    # require "sprockets/railtie"
+    require "rails/test_unit/railtie"
+
+This can also be achieved with flags when creating a new **Rails::API** app:
+
+    rails-api new my_api --skip-test-unit --skip-sprockets
+
 #### For already existing apps
 
 If you want to take an existing app and make it a **Rails::API** app, you'll have to do some quick setup manually.

@@ -68,7 +68,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       end
     end
 
-    assert_file "test/#{generated_test_funcional_dir}/product_lines_controller_test.rb" do |test|
+    assert_file "test/#{generated_test_functional_dir}/product_lines_controller_test.rb" do |test|
       assert_match(/class ProductLinesControllerTest < ActionController::TestCase/, test)
       if rails4?
         assert_match(/post :create, product_line: \{ product_id: @product_line.product_id, title: @product_line.title, user_id: @product_line.user_id \}/, test)

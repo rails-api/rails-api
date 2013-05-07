@@ -45,7 +45,7 @@ class AppGeneratorTest < Rails::Generators::TestCase
       lib/assets
       log
       test/fixtures
-      test/#{generated_test_funcional_dir}
+      test/#{generated_test_functional_dir}
       test/integration
       test/#{generated_test_unit_dir}
     )

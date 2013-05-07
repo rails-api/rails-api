@@ -28,7 +28,7 @@ module GeneratorsTestHelper
     rails4? ? 'models' : 'unit'
   end
 
-  def generated_test_funcional_dir
+  def generated_test_functional_dir
     rails4? ? 'controllers' : 'functional'
   end
 

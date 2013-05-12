@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
 
   gem.authors       = ["Santiago Pastorino and Carlos Antonio da Silva"]
   gem.email         = ["<santiago@wyeworks.com>", "<carlosantoniodasilva@gmail.com>"]
-  gem.homepage      = "https://github.com/spastorino/rails-api"
+  gem.homepage      = "https://github.com/rails-api/rails-api"
 
   gem.required_rubygems_version = '>= 1.3.6'
 

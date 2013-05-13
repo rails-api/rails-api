@@ -95,7 +95,7 @@ Rails includes all of the sub-frameworks (ActiveRecord, ActionMailer, etc) by de
 
 This can also be achieved with flags when creating a new **Rails::API** app:
 
-    rails-api new my_api --skip-test-unit --skip-sprockets
+    rails-api new my_api --skip-action-mailer --skip-sprockets
 
 Note: There are references to ActionMailer and ActiveRecord in the various
   config/environment files. If you decide to exclude any of these from your project

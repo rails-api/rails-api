@@ -11,6 +11,7 @@ matrix:
   allow_failures:
     - gemfile: Gemfile.edge
 notifications:
+  email: false
   campfire:
     on_success: change
     rooms:

@@ -137,7 +137,7 @@ If you want to use the Rails default middleware stack (avoid the reduction that 
 
 ### Serialization
 
-We suggest using [ActiveModel::Serializers][ams] to deserialize your ActiveModel/ActiveRecord objects into the desired response format (e.g. JSON).
+We suggest using [ActiveModel::Serializers][ams] to serialize your ActiveModel/ActiveRecord objects into the desired response format (e.g. JSON).
 
 ### Choosing Middlewares
 

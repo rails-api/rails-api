@@ -150,7 +150,7 @@ module ActionController
       include mod
     end
     
-    if Rails.version.to_i >= 4
+    if Rails::API.rails4?
       include StrongParameters
     end
 

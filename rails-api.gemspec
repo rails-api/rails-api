@@ -27,7 +27,6 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'actionpack', '>= 3.2.11'
   gem.add_runtime_dependency 'railties', '>= 3.2.11'
-  gem.add_runtime_dependency 'tzinfo', '~> 0.3.31'
 
   gem.add_development_dependency 'rails', '>= 3.2.11'
 end

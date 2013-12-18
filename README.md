@@ -87,15 +87,15 @@ This will do two main things for you:
 Rails includes all of the sub-frameworks (ActiveRecord, ActionMailer, etc) by default. Some API projects won't need them all, so at the top of config/application.rb, you can replace `require 'rails/all'` with specific sub-frameworks:
 
     # config/application.rb
-    require "active_record/railtie"
+    # require "active_record/railtie"
     require "action_controller/railtie"
-    # require "action_mailer/railtie"
+    require "action_mailer/railtie"
     # require "sprockets/railtie"
     require "rails/test_unit/railtie"
 
 This can also be achieved with flags when creating a new **Rails::API** app:
 
-    rails-api new my_api --skip-action-mailer --skip-sprockets
+    rails-api new my_api --skip-active-record --skip-sprockets
 
 Note: There are references to ActionMailer and ActiveRecord in the various
   config/environment files. If you decide to exclude any of these from your project

@@ -120,7 +120,6 @@ module ActionController
 
       MODULES - modules
     end
-    
 
     MODULES = [
       HideActions,
@@ -149,8 +148,8 @@ module ActionController
     MODULES.each do |mod|
       include mod
     end
-    
-    if Rails::VERSION::MAJOR == 4
+
+    if Rails::VERSION::MAJOR >= 4
       include StrongParameters
     end
 

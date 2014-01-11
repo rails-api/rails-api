@@ -1,5 +1,9 @@
 ## unreleased
 
+* Rails 4.1 support (@jpteti, @litch, @bmorton)
+* Add session management to Rails 4 stack if config.session\_store is
+  supplied and config.api\_only = false (@tamird)
+
 ## 0.1.0
 
 * Remove Ruby 1.9.2 support. (@steveklabnik)

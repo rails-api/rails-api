@@ -9,9 +9,6 @@ rvm:
 gemfile:
   - Gemfile
   - Gemfile.edge
-matrix:
-  allow_failures:
-    - gemfile: Gemfile.edge
 notifications:
   email: false
   campfire:

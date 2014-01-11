@@ -6,6 +6,10 @@ class OmgController < ActionController::API
   def index
     render :text => "OMG"
   end
+
+  def unauthorized
+    render :text => "get out", :status => :unauthorized
+  end
 end
 
 class ApiApplicationTest < ActiveSupport::TestCase
@@ -15,8 +19,12 @@ class ApiApplicationTest < ActiveSupport::TestCase
 
   def test_boot_api_app
     get "/omg"
-    assert_equal 200, last_response.status
     assert_equal "OMG", last_response.body
+  end
+
+  def test_proper_status_set
+    get "/omg/unauthorized"
+    assert_equal 401, last_response.status
   end
 
   def test_api_middleware_stack

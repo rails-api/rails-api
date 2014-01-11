@@ -1,4 +1,4 @@
-## unreleased
+## 0.2.0
 
 * Rails 4.1 support (@jpteti, @litch, @bmorton)
 * Add session management to Rails 4 stack if config.session\_store is

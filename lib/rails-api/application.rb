@@ -1,4 +1,3 @@
-require 'rails/version'
 require 'rails/application'
 require 'rails-api/public_exceptions'
 require 'rails-api/application/default_rails_four_middleware_stack'

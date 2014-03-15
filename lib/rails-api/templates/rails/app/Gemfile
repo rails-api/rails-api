@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
-<%= rails_gemfile_entry -%>
+gem '<%= rails_gemfile_entry.first.name -%>', '<%= rails_gemfile_entry.first.version -%>'
 
 gem 'rails-api'
 
-<%= database_gemfile_entry -%>
+<%- if database_gemfile_entry.try(:name) -%>
+gem '<%= database_gemfile_entry.name -%>'
+<% end %>
 
 <%= "gem 'jruby-openssl'\n" if defined?(JRUBY_VERSION) -%>
 <%= "gem 'json'\n" if RUBY_VERSION < "1.9.2" -%>

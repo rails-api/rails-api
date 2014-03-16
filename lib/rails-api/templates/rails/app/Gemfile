@@ -1,14 +1,24 @@
 source 'https://rubygems.org'
 
+<%- if rails_gemfile_entry.is_a? String -%>
+<%= rails_gemfile_entry %>
+<%- else -%>
 gem '<%= rails_gemfile_entry.first.name -%>', '<%= rails_gemfile_entry.first.version -%>'
+<%- end -%>
 
 gem 'rails-api'
 
-<%- if database_gemfile_entry.try(:name) -%>
-gem '<%= database_gemfile_entry.name -%>'
-<% end %>
-
+<%- if database_gemfile_entry.is_a? String -%>
+<%= database_gemfile_entry %>
+<%- else -%>
 gem 'spring', :group => :development
+
+  <%- if database_gemfile_entry.first -%>
+gem '<%= database_gemfile_entry.first.name -%>'
+  <%- end -%>
+
+<%- end -%>
+
 
 <%= "gem 'jruby-openssl'\n" if defined?(JRUBY_VERSION) -%>
 <%= "gem 'json'\n" if RUBY_VERSION < "1.9.2" -%>

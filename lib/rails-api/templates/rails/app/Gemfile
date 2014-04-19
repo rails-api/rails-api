@@ -3,7 +3,9 @@ source 'https://rubygems.org'
 <%- if rails_gemfile_entry.is_a? String -%>
 <%= rails_gemfile_entry %>
 <%- else -%>
-gem '<%= rails_gemfile_entry.first.name -%>', '<%= rails_gemfile_entry.first.version -%>'
+<%- rails_gemfile_entry.each do |entry| -%>
+gem '<%= entry.name -%>', '<%= entry.version -%>'
+<%- end -%>
 <%- end -%>
 
 gem 'rails-api'
@@ -13,10 +15,9 @@ gem 'rails-api'
 <%- else -%>
 gem 'spring', :group => :development
 
-  <%- if database_gemfile_entry.first -%>
-gem '<%= database_gemfile_entry.first.name -%>'
-  <%- end -%>
-
+<%- if database_gemfile_entry -%>
+gem '<%= database_gemfile_entry.name -%>'
+<%- end -%>
 <%- end -%>
 
 

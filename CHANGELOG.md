@@ -1,3 +1,8 @@
+## 0.2.1
+
+* Fixed Rails 4.1 Gemfile generation issues (@neoeno, @RMaksymczuk,
+  @spastorino)
+
 ## 0.2.0
 
 * Rails 4.1 support (@jpteti, @litch, @bmorton)

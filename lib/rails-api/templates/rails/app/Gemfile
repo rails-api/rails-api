@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 <%= rails_gemfile_entry %>
 <%- else -%>
 <%- rails_gemfile_entry.each do |entry| -%>
+<%- if entry.respond_to?(:name) %>
 gem '<%= entry.name -%>', '<%= entry.version -%>'
+<%- end -%>
 <%- end -%>
 <%- end -%>
 
@@ -15,7 +17,7 @@ gem 'rails-api'
 <%- else -%>
 gem 'spring', :group => :development
 
-<%- if database_gemfile_entry -%>
+<%- if database_gemfile_entry && database_gemfile_entry.respond_to?(:name) %>
 gem '<%= database_gemfile_entry.name -%>'
 <%- end -%>
 <%- end -%>

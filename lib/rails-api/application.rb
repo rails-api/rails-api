@@ -5,6 +5,8 @@ require 'rails-api/application/default_rails_four_middleware_stack'
 
 module Rails
   class Application < Engine
+    alias_method :rails_default_middleware_stack, :default_middleware_stack
+
     def default_middleware_stack
       if Rails::API.rails4?
         DefaultRailsFourMiddlewareStack.new(self, config, paths).build_stack

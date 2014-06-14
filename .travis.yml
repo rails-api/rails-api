@@ -2,10 +2,10 @@ language: ruby
 rvm:
   - 1.9.3
   - 2.0.0
-  - 2.1.0
+  - 2.1
   - ruby-head
   - jruby
-  - rbx
+  - rbx-2
 gemfile:
   - Gemfile
   - Gemfile.edge

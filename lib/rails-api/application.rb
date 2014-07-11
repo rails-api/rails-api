@@ -11,7 +11,7 @@ module Rails
       if Rails::API.rails4?
         DefaultRailsFourMiddlewareStack.new(self, config, paths).build_stack
       else
-        rails_three_stack
+        rails_3_stack
       end
     end
 
@@ -39,7 +39,7 @@ module Rails
       setup_generators!
     end
 
-    def rails_three_stack
+    def rails_3_stack
       ActionDispatch::MiddlewareStack.new.tap do |middleware|
         if rack_cache = config.action_controller.perform_caching && config.action_dispatch.rack_cache
           require "action_dispatch/http/rack_cache"

@@ -220,7 +220,7 @@ Some common modules you might want to add:
 
 * *AbstractController::Translation*: Support for the *l* and *t* localization and translation methods. These delegate to *I18n.translate* and *I18n.localize*.
 * *ActionController::HttpAuthentication::Basic::ControllerMethods* (or *Digest* or *Token*): Support for basic, digest or token HTTP authentication.
-* *AbstractController::Layouts*: Support for layouts when rendering.
+* *ActionView::Layouts*: Support for layouts when rendering.
 * *ActionController::MimeResponds* (and *ActionController::ImplicitRender* for Rails 4): Support for content negotiation (*respond_to*, *respond_with*).
 * *ActionController::Cookies*: Support for *cookies*, which includes support for signed and encrypted cookies. This requires the cookie middleware.
 

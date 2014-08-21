@@ -1,4 +1,7 @@
 language: ruby
+
+sudo: false
+
 rvm:
   - 1.9.3
   - 2.0.0
@@ -6,9 +9,11 @@ rvm:
   - ruby-head
   - jruby
   - rbx-2
+
 gemfile:
   - Gemfile
   - Gemfile.edge
+
 notifications:
   email: false
   campfire:

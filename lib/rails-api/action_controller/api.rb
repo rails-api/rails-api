@@ -155,6 +155,10 @@ module ActionController
       include mod
     end
 
+    def self.protected_instance_variables
+      Set.new
+    end
+
     if Rails::VERSION::MAJOR >= 4
       include StrongParameters
     end

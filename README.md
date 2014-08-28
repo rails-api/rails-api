@@ -131,7 +131,7 @@ class ApplicationController < ActionController::API
 end
 ```
 
-And comment out the `protect_from_forgery` call if you are using it.
+And comment out the `protect_from_forgery` call if you are using it. (You aren't using cookie-based authentication for your API, are you?)
 
 If you want to use the Rails default middleware stack (avoid the reduction that rails-api does), you can just add config.api_only = false to config/application.rb file.
 

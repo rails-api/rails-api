@@ -1,4 +1,7 @@
 language: ruby
+
+sudo: false
+
 rvm:
   - 1.9.3
   - 2.0.0
@@ -6,12 +9,15 @@ rvm:
   - ruby-head
   - jruby
   - rbx-2
+
 gemfile:
   - Gemfile
   - Gemfile.edge
+
 notifications:
   email: false
   campfire:
     on_success: change
     rooms:
       - secure: "TP0fJ4aqXCRD7CaAgaYW7Pa22j4/uLChdBb59ob/sJvHtfi4Zx3I54xWApmp\nZl1KItFGCV8oQZhQl5hAmHJfJ+1gCNeBvIKwY6TsIyTmyDg1KcJUcJDrwYxO\ntAeYI2PvU5PtKMmpnfnwFQMxL+2nfWJWNzboBCDr4YvoFI+rN+A="
+

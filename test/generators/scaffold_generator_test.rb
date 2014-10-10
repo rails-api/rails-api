@@ -66,6 +66,10 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
         assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
         assert_match(/@product_line\.destroy/, m)
       end
+
+      assert_instance_method :product_line_params, content do |m|
+        assert_match(/params\.require\(:product_line\)\.permit\(:title, :product_id, :user_id\)/, m)
+      end
     end
 
     assert_file "test/#{generated_test_functional_dir}/product_lines_controller_test.rb" do |test|

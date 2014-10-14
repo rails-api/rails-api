@@ -1,5 +1,7 @@
 <% module_namespacing do -%>
 class <%= controller_class_name %>Controller < ApplicationController
+  before_action <%= ":set_#{singular_table_name}" %>, only: [:show, :update, :destroy]
+
   # GET <%= route_url %>
   # GET <%= route_url %>.json
   def index
@@ -11,8 +13,6 @@ class <%= controller_class_name %>Controller < ApplicationController
   # GET <%= route_url %>/1
   # GET <%= route_url %>/1.json
   def show
-    @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
-
     render json: <%= "@#{singular_table_name}" %>
   end
 
@@ -43,14 +43,17 @@ class <%= controller_class_name %>Controller < ApplicationController
   # DELETE <%= route_url %>/1
   # DELETE <%= route_url %>/1.json
   def destroy
-    @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
     @<%= orm_instance.destroy %>
 
     head :no_content
   end
 
   private
-    
+
+    def <%= "set_#{singular_table_name}" %>
+      @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
+    end
+
     def <%= "#{singular_table_name}_params" %>
       <%- if attributes_names.empty? -%>
       params[:<%= singular_table_name %>]

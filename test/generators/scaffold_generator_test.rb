@@ -38,12 +38,13 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       assert_match(/class ProductLinesController < ApplicationController/, content)
       assert_no_match(/respond_to/, content)
 
+      assert_match(/before_action :set_product_line, only: \[:show, :update, :destroy\]/, content)
+
       assert_instance_method :index, content do |m|
         assert_match(/@product_lines = ProductLine\.all/, m)
       end
 
       assert_instance_method :show, content do |m|
-        assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
       end
 
       assert_instance_method :create, content do |m|
@@ -63,8 +64,11 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       end
 
       assert_instance_method :destroy, content do |m|
-        assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
         assert_match(/@product_line\.destroy/, m)
+      end
+
+      assert_instance_method :set_product_line, content do |m|
+        assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
       end
 
       assert_instance_method :product_line_params, content do |m|

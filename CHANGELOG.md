@@ -1,6 +1,14 @@
+## master
+
+## 0.3.0
+
+* Use strong params on scaffolding (@txdavidtx)
+* Add support for Rails 4.1 protected_instance_variables (@edowling)
+* Fix rails-api new with --skip-active-record (@spastorino)
+
 ## 0.2.1
 
-* Fixed Rails 4.1 Gemfile generation issues (@neoeno, @RMaksymczuk,
+* Fix Rails 4.1 Gemfile generation issues (@neoeno, @RMaksymczuk,
   @spastorino)
 
 ## 0.2.0

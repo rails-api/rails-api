@@ -155,8 +155,12 @@ module ActionController
       include mod
     end
 
+    DEFAULT_PROTECTED_INSTANCE_VARIABLES = begin
+      (Rails::VERSION::MAJOR < 4 || Rails::VERSION::MINOR < 1) ?  Array : Set
+    end.new
+
     def self.protected_instance_variables
-      Set.new
+      DEFAULT_PROTECTED_INSTANCE_VARIABLES
     end
 
     if Rails::VERSION::MAJOR >= 4

@@ -149,6 +149,7 @@ module ActionController
     if Rails::VERSION::MAJOR >= 4 && Rails::VERSION::MINOR > 0
       include AbstractController::Rendering
       include ActionView::Rendering
+      include ActionController::ImplicitRender
     end
 
     MODULES.each do |mod|

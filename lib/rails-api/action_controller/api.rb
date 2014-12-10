@@ -146,7 +146,7 @@ module ActionController
       Instrumentation
     ]
 
-    if Rails::VERSION::MAJOR >= 4 && Rails::VERSION::MINOR > 0
+    if Rails::VERSION::MAJOR == 5 || (Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR > 0)
       include AbstractController::Rendering
       include ActionView::Rendering
     end
@@ -156,7 +156,11 @@ module ActionController
     end
 
     DEFAULT_PROTECTED_INSTANCE_VARIABLES = begin
-      (Rails::VERSION::MAJOR < 4 || Rails::VERSION::MINOR < 1) ?  Array : Set
+      if Rails::VERSION::MAJOR == 5 || (Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR > 0)
+        Set
+      else
+        Array
+      end
     end.new
 
     def self.protected_instance_variables

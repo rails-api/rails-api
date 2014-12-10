@@ -15,16 +15,16 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "test/#{generated_test_unit_dir}/product_line_test.rb", /class ProductLineTest < ActiveSupport::TestCase/
     assert_file "test/fixtures/product_lines.yml"
 
-    if rails4?
-      assert_migration "db/migrate/create_product_lines.rb",
-        /belongs_to :product, index: true/,
-        /references :user, index: true/
-    else
+    if rails3?
       assert_migration "db/migrate/create_product_lines.rb",
         /belongs_to :product/,
         /add_index :product_lines, :product_id/,
         /references :user/,
         /add_index :product_lines, :user_id/
+    else
+      assert_migration "db/migrate/create_product_lines.rb",
+        /belongs_to :product, index: true/,
+        /references :user, index: true/
     end
 
     # Route
@@ -54,10 +54,10 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
       assert_instance_method :update, content do |m|
         assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
-        if rails4?
-          assert_match(/@product_line\.update\(product_line_params\)/, m)
-        else
+        if rails3?
           assert_match(/@product_line\.update_attributes\(product_line_params\)/, m)
+        else
+          assert_match(/@product_line\.update\(product_line_params\)/, m)
         end
         assert_match(/@product_line\.errors/, m)
       end
@@ -74,12 +74,12 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
     assert_file "test/#{generated_test_functional_dir}/product_lines_controller_test.rb" do |test|
       assert_match(/class ProductLinesControllerTest < ActionController::TestCase/, test)
-      if rails4?
-        assert_match(/post :create, product_line: \{ product_id: @product_line.product_id, title: @product_line.title, user_id: @product_line.user_id \}/, test)
-        assert_match(/put :update, id: @product_line, product_line: \{ product_id: @product_line.product_id, title: @product_line.title, user_id: @product_line.user_id \}/, test)
-      else
+      if rails3?
         assert_match(/post :create, product_line: \{ title: @product_line.title \}/, test)
         assert_match(/put :update, id: @product_line, product_line: \{ title: @product_line.title \}/, test)
+      else
+        assert_match(/post :create, product_line: \{ product_id: @product_line.product_id, title: @product_line.title, user_id: @product_line.user_id \}/, test)
+        assert_match(/put :update, id: @product_line, product_line: \{ product_id: @product_line.product_id, title: @product_line.title, user_id: @product_line.user_id \}/, test)
       end
       assert_no_match(/assert_redirected_to/, test)
     end

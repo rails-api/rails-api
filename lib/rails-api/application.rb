@@ -7,10 +7,10 @@ module Rails
     alias_method :rails_default_middleware_stack, :default_middleware_stack
 
     def default_middleware_stack
-      if Rails::API.rails4?
-        DefaultRailsFourMiddlewareStack.new(self, config, paths).build_stack
+      if Rails::API.rails3?
+        rails3_stack
       else
-        rails_3_stack
+        DefaultRailsFourMiddlewareStack.new(self, config, paths).build_stack
       end
     end
 
@@ -38,7 +38,7 @@ module Rails
       setup_generators!
     end
 
-    def rails_3_stack
+    def rails3_stack
       ActionDispatch::MiddlewareStack.new.tap do |middleware|
         if rack_cache = config.action_controller.perform_caching && config.action_dispatch.rack_cache
           require "action_dispatch/http/rack_cache"

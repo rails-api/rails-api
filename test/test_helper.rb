@@ -6,8 +6,8 @@ require 'rails'
 require 'rails/test_help'
 require 'rails-api'
 
-def rails4?
-  Rails::API.rails4?
+def rails3?
+  Rails::API.rails3?
 end
 
 class ActiveSupport::TestCase
@@ -25,7 +25,7 @@ class ActiveSupport::TestCase
         c.performance_tool :test_unit
       end
 
-      if rails4?
+      unless rails3?
         config.eager_load = false
         config.secret_key_base = 'abc123'
       end

@@ -144,13 +144,13 @@ We suggest using [ActiveModel::Serializers][ams] to serialize your ActiveModel/A
 An API application comes with the following middlewares by default.
 
 * *ActionDispatch::DebugExceptions*: Log exceptions.
-* *ActionDispatch::Head*: Dispatch *HEAD* requests as *GET* requests, and return only the status code and headers.
 * *ActionDispatch::ParamsParser*: Parse XML, YAML and JSON parameters when the request's *Content-Type* is one of those.
 * *ActionDispatch::Reloader*: In development mode, support code reloading.
 * *ActionDispatch::RemoteIp*: Protect against IP spoofing attacks.
 * *ActionDispatch::RequestId*: Makes a unique request id available, sending the id to the client via the X-Request-Id header. The unique request id can be used to trace a request end-to-end and would typically end up being part of log files from multiple pieces of the stack.
 * *ActionDispatch::ShowExceptions*: Rescue exceptions and re-dispatch them to an exception handling application.
 * *Rack::Cache*: Caches responses with public *Cache-Control* headers using HTTP caching semantics.
+* *Rack::Head*: Dispatch *HEAD* requests as *GET* requests, and return only the status code and headers.
 * *Rack::ConditionalGet*: Supports the `stale?` feature in Rails controllers.
 * *Rack::ETag*: Automatically set an *ETag* on all string responses. This means that if the same response is returned from a controller for the same URL, the server will return a *304 Not Modified*, even if no additional caching steps are taken. This is primarily a client-side optimization; it reduces bandwidth costs but not server processing time.
 * *Rack::Lock*: If your application is not marked as threadsafe (`config.threadsafe!`), this middleware will add a mutex around your requests.

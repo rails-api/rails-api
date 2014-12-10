@@ -1,5 +1,9 @@
 ## master
 
+* ActionDispatch::Head replaced by Rack::Head (@bearded)
+* Converted Rails4 checks into Rails3 checks (@bearded)
+* Green tests on Rails 5.0.0.alpha (@bearded)
+
 ## 0.3.0
 
 * Use strong params on scaffolding (@txdavidtx)

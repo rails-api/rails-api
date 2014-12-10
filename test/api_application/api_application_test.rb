@@ -29,7 +29,7 @@ class ApiApplicationTest < ActiveSupport::TestCase
 
   def test_api_middleware_stack
     expected_middleware_stack =
-      rails4? ? expected_middleware_stack_rails4 : expected_middleware_stack_rails3
+      rails3? ? expected_middleware_stack_rails3 : expected_middleware_stack_rails
 
     assert_equal expected_middleware_stack, app.middleware.map(&:klass).map(&:name)
   end
@@ -56,7 +56,7 @@ class ApiApplicationTest < ActiveSupport::TestCase
     ]
   end
 
-  def expected_middleware_stack_rails4
+  def expected_middleware_stack_rails
     [
       "ActionDispatch::Static",
       "Rack::Lock",

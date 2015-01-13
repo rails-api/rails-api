@@ -37,6 +37,14 @@ module Rails
       config.api_only = true
       setup_generators!
     end
+    
+    def check_serve_static_files
+      if Rails::VERSION::MAJOR >= 5 || (Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR > 1)
+        config.serve_static_files
+      else
+        config.serve_static_assets
+      end
+    end
 
     def rails3_stack
       ActionDispatch::MiddlewareStack.new.tap do |middleware|
@@ -53,11 +61,12 @@ module Rails
         if config.action_dispatch.x_sendfile_header.present?
           middleware.use ::Rack::Sendfile, config.action_dispatch.x_sendfile_header
         end
+        
 
-        if config.serve_static_assets
+        if check_serve_static_files
           middleware.use ::ActionDispatch::Static, paths["public"].first, config.static_cache_control
         end
-
+        
         middleware.use ::Rack::Lock unless config.allow_concurrency
         middleware.use ::Rack::Runtime
         middleware.use ::Rack::MethodOverride unless config.api_only

@@ -133,7 +133,7 @@ end
 
 And comment out the `protect_from_forgery` call if you are using it. (You aren't using cookie-based authentication for your API, are you?)
 
-If you want to use the Rails default middleware stack (avoid the reduction that rails-api does), you can just add config.api_only = false to config/application.rb file.
+If you want to use the Rails default middleware stack (avoid the reduction that rails-api does), you can just add `config.api_only = false` to `config/application.rb` file.
 
 ### Serialization
 
@@ -159,6 +159,7 @@ An API application comes with the following middlewares by default.
 * *Rack::Lock*: If your application is not marked as threadsafe (`config.threadsafe!`), this middleware will add a mutex around your requests.
 * *Rack::Runtime*: Adds a header to the response listing the total runtime of the request.
 * *Rack::Sendfile*: Uses a front-end server's file serving support from your Rails application.
+* *Rack::Head*: Dispatch *HEAD* requests as *GET* requests, and return only the status code and headers.
 * *Rails::Rack::Logger*: Log the request started and flush all loggers after it.
 
 Other plugins, including *ActiveRecord*, may add additional middlewares. In general, these middlewares are agnostic to the type of app you are building, and make sense in an API-only Rails application.

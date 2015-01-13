@@ -24,7 +24,7 @@ module Rails
             middleware.use ::Rack::Sendfile, config.action_dispatch.x_sendfile_header
           end
 
-          if config.serve_static_assets
+          if serve_static_files?
             middleware.use ::ActionDispatch::Static, paths["public"].first, config.static_cache_control
           end
 
@@ -62,6 +62,17 @@ module Rails
       end
 
       private
+
+        # `config.serve_static_assets` will be removed in Rails 5.0, and throws
+        # a deprecation warning in Rails >= 4.2. The new option is
+        # `config.serve_static_files`.
+        def serve_static_files?
+          if config.respond_to?(:serve_static_files)
+            config.serve_static_files
+          else
+            config.serve_static_assets
+          end
+        end
 
         def reload_dependencies?
           config.reload_classes_only_on_change != true || app.reloaders.map(&:updated?).any?

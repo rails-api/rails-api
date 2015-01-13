@@ -138,6 +138,9 @@ If you want to use the Rails default middleware stack (avoid the reduction that 
 ### Serialization
 
 We suggest using [ActiveModel::Serializers][ams] to serialize your ActiveModel/ActiveRecord objects into the desired response format (e.g. JSON).
+In `ApplicationController` you need to add `include ActionController::Serialization` to make ActiveModelSerializers work.
+
+
 
 ### Choosing Middlewares
 

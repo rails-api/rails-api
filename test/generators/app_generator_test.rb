@@ -49,7 +49,7 @@ class AppGeneratorTest < Rails::Generators::TestCase
       test/integration
       test/#{generated_test_unit_dir}
     )
-    files.concat rails4? ? default_files_rails4 : default_files_rails3
+    files.concat rails3? ? default_files_rails3 : default_files_rails
     files
   end
 
@@ -57,7 +57,7 @@ class AppGeneratorTest < Rails::Generators::TestCase
     %w(script/rails)
   end
 
-  def default_files_rails4
+  def default_files_rails
     %w(bin/bundle bin/rails bin/rake)
   end
 

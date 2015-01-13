@@ -12,7 +12,15 @@ rvm:
 
 gemfile:
   - Gemfile
-  - Gemfile.edge
+
+matrix:
+  include:
+    - rvm: 2.1
+      gemfile: Gemfile.edge
+    - rvm: ruby-head
+      gemfile: Gemfile.edge
+    - rvm: rbx-2
+      gemfile: Gemfile.edge
 
 notifications:
   email: false

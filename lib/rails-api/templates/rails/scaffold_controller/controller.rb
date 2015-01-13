@@ -33,7 +33,7 @@ class <%= controller_class_name %>Controller < ApplicationController
   def update
     @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
 
-    if @<%= Rails::API.rails4? ? orm_instance.update("#{singular_table_name}_params") : orm_instance.update_attributes("params[:#{singular_table_name}]") %>
+    if @<%= Rails::API.rails3? ? orm_instance.update_attributes("params[:#{singular_table_name}]") : orm_instance.update("#{singular_table_name}_params") %>
       head :no_content
     else
       render json: <%= "@#{orm_instance.errors}" %>, status: :unprocessable_entity

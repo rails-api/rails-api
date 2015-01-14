@@ -123,7 +123,6 @@ module ActionController
     end
 
     MODULES = [
-      HideActions,
       UrlFor,
       Redirecting,
       Rendering,
@@ -149,6 +148,10 @@ module ActionController
     if Rails::VERSION::MAJOR == 5 || (Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR > 0)
       include AbstractController::Rendering
       include ActionView::Rendering
+    end
+
+    if Rails::VERSION::MAJOR < 5
+      include ActionController::HideActions
     end
 
     MODULES.each do |mod|

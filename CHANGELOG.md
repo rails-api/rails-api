@@ -1,5 +1,10 @@
 ## master
 
+* Rubinius rubysl ~> 2.1 and added gem `psysch` into :rbx section of Gemfiles (@bearded)
+* Require Ruby 2.2 for Rails 5.0 (@bearded)
+* Removed ActionController::HideActions (@bearded)
+* bcrypt-ruby was renamed to bcrypt (@djbender)
+* Fixing use of deprecated `serve_static_assets` config option (@theunraveler)
 * ActionDispatch::Head replaced by Rack::Head (@bearded)
 * Converted Rails4 checks into Rails3 checks (@bearded)
 * Green tests on Rails 5.0.0.alpha (@bearded)

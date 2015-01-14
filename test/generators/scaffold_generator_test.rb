@@ -42,9 +42,11 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
       assert_instance_method :index, content do |m|
         assert_match(/@product_lines = ProductLine\.all/, m)
+        assert_match(/render json: @product_lines/, m)
       end
 
       assert_instance_method :show, content do |m|
+        assert_match(/render json: @product_line/, m)
       end
 
       assert_instance_method :create, content do |m|

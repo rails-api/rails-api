@@ -6,6 +6,7 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1
+  - 2.2
   - ruby-head
   - jruby
   - rbx-2
@@ -15,10 +16,11 @@ gemfile:
 
 matrix:
   include:
-    - rvm: 2.1
+    - rvm: 2.2
       gemfile: Gemfile.edge
     - rvm: ruby-head
       gemfile: Gemfile.edge
+  allow_failures:
     - rvm: rbx-2
       gemfile: Gemfile.edge
 

@@ -6,10 +6,6 @@ require 'rails'
 require 'rails/test_help'
 require 'rails-api'
 
-def rails3?
-  Rails::API.rails3?
-end
-
 class ActiveSupport::TestCase
   def self.app
     @@app ||= Class.new(Rails::Application) do
@@ -25,10 +21,8 @@ class ActiveSupport::TestCase
         c.performance_tool :test_unit
       end
 
-      unless rails3?
-        config.eager_load = false
-        config.secret_key_base = 'abc123'
-      end
+      config.eager_load = false
+      config.secret_key_base = 'abc123'
 
       def self.name
         'TestApp'

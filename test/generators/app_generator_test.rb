@@ -49,12 +49,8 @@ class AppGeneratorTest < Rails::Generators::TestCase
       test/integration
       test/#{generated_test_unit_dir}
     )
-    files.concat rails3? ? default_files_rails3 : default_files_rails
+    files.concat default_files_rails
     files
-  end
-
-  def default_files_rails3
-    %w(script/rails)
   end
 
   def default_files_rails

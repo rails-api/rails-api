@@ -25,11 +25,11 @@ module GeneratorsTestHelper
   end
 
   def generated_test_unit_dir
-    rails3? ? 'unit' : 'models'
+    'models'
   end
 
   def generated_test_functional_dir
-    rails3? ? 'functional' : 'controllers'
+    'controllers'
   end
 
   def remove_destination

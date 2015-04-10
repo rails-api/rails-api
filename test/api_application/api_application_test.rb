@@ -37,23 +37,9 @@ class ApiApplicationTest < ActiveSupport::TestCase
   private
 
   def expected_middleware_stack_rails3
-    [
-      "ActionDispatch::Static",
-      "Rack::Lock",
-      "ActiveSupport::Cache::Strategy::LocalCache",
-      "Rack::Runtime",
-      "ActionDispatch::RequestId",
-      "Rails::Rack::Logger",
-      "ActionDispatch::ShowExceptions",
-      "ActionDispatch::DebugExceptions",
-      "ActionDispatch::RemoteIp",
-      "ActionDispatch::Reloader",
-      "ActionDispatch::Callbacks",
-      "ActionDispatch::ParamsParser",
-      "ActionDispatch::Head",
-      "Rack::ConditionalGet",
-      "Rack::ETag"
-    ]
+    expected_middleware_stack_rails.map do |x|
+      x == "ActionDispatch::Head" ? "Rack::Head" : x
+    end.flatten!
   end
 
   def expected_middleware_stack_rails

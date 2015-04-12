@@ -18,6 +18,19 @@ gemfile:
   - Gemfile.4-1
   - Gemfile.4-2
 
+matrix:
+  exclude:
+    - rvm: 1.9.3
+      gemfile: Gemfile
+    - rvm: 2.0.0
+      gemfile: Gemfile
+    - rvm: 2.1
+      gemfile: Gemfile
+    - rvm: jruby
+      gemfile: Gemfile
+    - rvm: rbx-2
+      gemfile: Gemfile
+
 notifications:
   email: false
   campfire:

@@ -143,7 +143,7 @@ module ActionController
       # Add instrumentations hooks at the bottom, to ensure they instrument
       # all the methods properly.
       Instrumentation
-    ]
+    ].freeze
 
     if Rails::VERSION::MAJOR == 5 || (Rails::VERSION::MAJOR == 4 && Rails::VERSION::MINOR > 0)
       include AbstractController::Rendering

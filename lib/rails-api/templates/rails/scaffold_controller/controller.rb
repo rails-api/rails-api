@@ -55,10 +55,10 @@ class <%= controller_class_name %>Controller < ApplicationController
     end
 
     def <%= "#{singular_table_name}_params" %>
-      <%- if attributes_names.empty? -%>
-      params[:<%= singular_table_name %>]
-      <%- else -%>
+      <%- if defined?(attributes_names) -%>
       params.require(:<%= singular_table_name %>).permit(<%= attributes_names.map { |name| ":#{name}" }.join(', ') %>)
+      <%- else -%>
+      params[:<%= singular_table_name %>]
       <%- end -%>
     end
 end

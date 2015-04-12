@@ -58,7 +58,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
       assert_instance_method :update, content do |m|
         assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
         if rails3?
-          assert_match(/@product_line\.update_attributes\(product_line_params\)/, m)
+          assert_match(/@product_line\.update_attributes\(params\[:product_line\]\)/, m)
         else
           assert_match(/@product_line\.update\(product_line_params\)/, m)
         end
@@ -69,12 +69,14 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
         assert_match(/@product_line\.destroy/, m)
       end
 
-      assert_instance_method :set_product_line, content do |m|
-        assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
-      end
+      unless rails3?
+        assert_instance_method :set_product_line, content do |m|
+          assert_match(/@product_line = ProductLine\.find\(params\[:id\]\)/, m)
+        end
 
-      assert_instance_method :product_line_params, content do |m|
-        assert_match(/params\.require\(:product_line\)\.permit\(:title, :product_id, :user_id\)/, m)
+        assert_instance_method :product_line_params, content do |m|
+          assert_match(/params\.require\(:product_line\)\.permit\(:title, :product_id, :user_id\)/, m)
+        end
       end
     end
 

@@ -13,13 +13,10 @@ rvm:
 
 gemfile:
   - Gemfile
-
-matrix:
-  include:
-    - rvm: 2.2.1
-      gemfile: Gemfile.edge
-    - rvm: ruby-head
-      gemfile: Gemfile.edge
+  - Gemfile.3-2
+  - Gemfile.4-0
+  - Gemfile.4-1
+  - Gemfile.4-2
 
 notifications:
   email: false

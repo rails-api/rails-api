@@ -15,7 +15,7 @@ gem 'rails-api'
 <%- if database_gemfile_entry.is_a? String -%>
 <%= database_gemfile_entry %>
 <%- else -%>
-gem 'spring', :group => :development
+gem 'spring', group: :development
 
 <%- if database_gemfile_entry && database_gemfile_entry.respond_to?(:name) %>
 gem '<%= database_gemfile_entry.name -%>'
@@ -36,7 +36,7 @@ gem '<%= database_gemfile_entry.name -%>'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano', :group => :development
+# gem 'capistrano', group: :development
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

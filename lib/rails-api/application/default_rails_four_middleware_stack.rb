@@ -95,9 +95,9 @@ module Rails
 
           if rack_cache == true
             {
-              metastore: "rails:/",
-              entitystore: "rails:/",
-              verbose: false
+              :metastore => "rails:/",
+              :entitystore => "rails:/",
+              :verbose => false
             }
           else
             rack_cache

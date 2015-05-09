@@ -226,6 +226,7 @@ Some common modules you might want to add:
 * *ActionView::Layouts*: Support for layouts when rendering.
 * *ActionController::MimeResponds* (and *ActionController::ImplicitRender* for Rails 4): Support for content negotiation (*respond_to*, *respond_with*).
 * *ActionController::Cookies*: Support for *cookies*, which includes support for signed and encrypted cookies. This requires the cookie middleware.
+* *ActionController::Serialization*: If you are using the `active_model_serializers` Gem, you will likely want to include this module.
 
 The best place to add a module is in your *ApplicationController*. You can also add modules to individual controllers.
 

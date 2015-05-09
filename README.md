@@ -229,6 +229,12 @@ Some common modules you might want to add:
 
 The best place to add a module is in your *ApplicationController*. You can also add modules to individual controllers.
 
+```ruby
+  class ApplicationController < ActionController::API
+    include ActionController::ImplicitRender
+  end
+```
+
 ## Contributing
 
 1. Fork it

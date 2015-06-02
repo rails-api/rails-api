@@ -1,6 +1,6 @@
 require 'generators/generators_test_helper'
 require 'rails-api/generators/rails/scope/scope_generator'
-require 'pry'
+
 class ScopeGeneratorTest < Rails::Generators::TestCase
   include GeneratorsTestHelper
 
@@ -12,7 +12,6 @@ class ScopeGeneratorTest < Rails::Generators::TestCase
   setup :copy_model
   
   def test_scope_route_and_methods_are_added
-    binding.pry
     run_generator
 
     assert_file "config/routes.rb" do |content|

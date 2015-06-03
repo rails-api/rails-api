@@ -1,5 +1,5 @@
 require 'generators/generators_test_helper'
-require 'rails-api/generators/rails/scope/scope_generator'
+require 'generators/rails/scope/scope_generator'
 
 class ScopeGeneratorTest < Rails::Generators::TestCase
   include GeneratorsTestHelper

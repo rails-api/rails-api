@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
 
 require 'rails-api/generators/rails/app/app_generator'
-require 'rails-api/generators/rails/scope/scope_generator'
 require 'rails/cli'

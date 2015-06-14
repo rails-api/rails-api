@@ -31,8 +31,6 @@ class <%= controller_class_name %>Controller < ApplicationController
   # PATCH/PUT <%= route_url %>/1
   # PATCH/PUT <%= route_url %>/1.json
   def update
-    @<%= singular_table_name %> = <%= orm_class.find(class_name, "params[:id]") %>
-
     if @<%= Rails::API.rails3? ? orm_instance.update_attributes("params[:#{singular_table_name}]") : orm_instance.update("#{singular_table_name}_params") %>
       head :no_content
     else

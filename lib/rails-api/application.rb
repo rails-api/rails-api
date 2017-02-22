@@ -16,7 +16,8 @@ module Rails
 
     private
 
-    def setup_generators!
+    ActiveSupport.on_load(:before_configuration) do
+      config.api_only = true
       generators = config.generators
 
       generators.templates.unshift File::expand_path('../templates', __FILE__)
@@ -31,11 +32,6 @@ module Rails
         :stylesheet_engine => nil,
         :template_engine => nil
       })
-    end
-
-    ActiveSupport.on_load(:before_configuration) do
-      config.api_only = true
-      setup_generators!
     end
     
     def check_serve_static_files

@@ -1,4 +1,10 @@
-## master
+## 0.4.1
+
+* Support Rails 4.2.8 (@spastorino)
+* Restore Ruby 1.8.7 support (@spastorino)
+* Add tests against all the supported Rubies and Rails versions (@spastorino)
+
+## 0.4.0
 
 * Rubinius rubysl ~> 2.1 and added gem `psysch` into :rbx section of Gemfiles (@bearded)
 * Require Ruby 2.2 for Rails 5.0 (@bearded)

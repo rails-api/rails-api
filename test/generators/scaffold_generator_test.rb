@@ -82,8 +82,13 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "test/#{generated_test_functional_dir}/product_lines_controller_test.rb" do |test|
       assert_match(/class ProductLinesControllerTest < ActionController::TestCase/, test)
       if rails3?
-        assert_match(/post :create, product_line: \{ title: @product_line.title \}/, test)
-        assert_match(/put :update, id: @product_line, product_line: \{ title: @product_line.title \}/, test)
+        if RUBY_VERSION < "1.9"
+          assert_match(/post :create, product_line: \{ :title => @product_line.title \}/, test)
+          assert_match(/put :update, id: @product_line, product_line: \{ :title => @product_line.title \}/, test)
+        else
+          assert_match(/post :create, product_line: \{ title: @product_line.title \}/, test)
+          assert_match(/put :update, id: @product_line, product_line: \{ title: @product_line.title \}/, test)
+        end
       else
         assert_match(/post :create, product_line: \{ product_id: @product_line.product_id, title: @product_line.title, user_id: @product_line.user_id \}/, test)
         assert_match(/put :update, id: @product_line, product_line: \{ product_id: @product_line.product_id, title: @product_line.title, user_id: @product_line.user_id \}/, test)

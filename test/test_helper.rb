@@ -13,6 +13,12 @@ end
 class ActiveSupport::TestCase
   def self.app
     @@app ||= Class.new(Rails::Application) do
+      def self.name
+        'TestApp'
+      end
+    end.tap do |app|
+      config = app.config
+
       config.active_support.deprecation = :stderr
 
       config.active_support.test_order = :random
@@ -33,9 +39,6 @@ class ActiveSupport::TestCase
         config.secret_key_base = 'abc123'
       end
 
-      def self.name
-        'TestApp'
-      end
     end
   end
 

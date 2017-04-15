@@ -97,7 +97,9 @@ module Rails
         middleware.use ::Rack::ETag, "no-cache"
 
         if !config.api_only && config.action_dispatch.best_standards_support
-          middleware.use ::ActionDispatch::BestStandardsSupport, config.action_dispatch.best_standards_support
+          if defined?(::ActionDispatch::BestStandardsSupport)
+            middleware.use ::ActionDispatch::BestStandardsSupport, config.action_dispatch.best_standards_support
+          end
         end
       end
     end

@@ -228,7 +228,12 @@ Some common modules you might want to add:
 * *ActionController::MimeResponds* (and *ActionController::ImplicitRender* for Rails 4): Support for content negotiation (*respond_to*, *respond_with*).
 * *ActionController::Cookies*: Support for *cookies*, which includes support for signed and encrypted cookies. This requires the cookie middleware.
 
-The best place to add a module is in your *ApplicationController*. You can also add modules to individual controllers.
+The best place to add a module is in your *ApplicationController*, e.g.
+```ruby
+class ApplicationController < ActionController::API
+  include ActionController::Cookies
+```
+You can also add modules to individual controllers.
 
 ## Contributing
 

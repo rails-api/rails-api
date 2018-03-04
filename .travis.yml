@@ -11,9 +11,10 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1
-  - 2.2.6
-  - 2.3.3
-  - 2.4.0
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
   - ruby-head
   - jruby
 
@@ -31,11 +32,17 @@ matrix:
       gemfile: Gemfile.4-1
     - rvm: 1.8.7
       gemfile: Gemfile
-    - rvm: 2.4.0
+    - rvm: 2.4
       gemfile: Gemfile.3-2
-    - rvm: 2.4.0
+    - rvm: 2.4
       gemfile: Gemfile.4-0
-    - rvm: 2.4.0
+    - rvm: 2.4
+      gemfile: Gemfile.4-1
+    - rvm: 2.5
+      gemfile: Gemfile.3-2
+    - rvm: 2.5
+      gemfile: Gemfile.4-0
+    - rvm: 2.5
       gemfile: Gemfile.4-1
     - rvm: ruby-head
       gemfile: Gemfile.3-2
